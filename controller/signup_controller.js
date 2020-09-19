@@ -6,9 +6,7 @@ const controller = {
     signup: (req,res) => {
         let hashedPassword = bcrypt.hashSync(req.body.Password,10)
         let eachUser = new signupSchema({
-            Name: req.body.Name,
-            Email:req.body.Email,
-            Password: hashedPassword
+            ...req.body
         })
         eachUser.save()
         .then((data) => {

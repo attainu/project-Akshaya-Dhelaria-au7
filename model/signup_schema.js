@@ -10,7 +10,7 @@ const signupSchema = new mongoose.Schema({
     Email:{
         type:String,
         required:true,
-        unique:true
+        // unique:true
     },
     Password:{
         type:String,

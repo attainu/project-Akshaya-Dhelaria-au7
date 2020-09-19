@@ -9,11 +9,13 @@ const signup = [
             max:256
         })
         .withMessage("Name should be minimum 6 characters"),
+
     body('Email')
         .exists()
         .withMessage('This email alreasy exists')
         .isEmail()
         .withMessage('Pleade enter your email'),
+
     body('Password')
         .not()
         .isEmpty()
@@ -30,6 +32,7 @@ const login  = [
         .withMessage('This email already exists')
         .isEmail()
         .withMessage('Please enter your email'),
+        
     body('Password')
         .not()
         .isEmpty()
