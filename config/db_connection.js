@@ -1,22 +1,17 @@
-const mongoose = require('mongoose')
+const {connect} = require('mongoose')
+var dotenv = require('dotenv')
 
-const db_connection = mongoose.connect('mongodb+srv://codingHunt:codingHunt@cluster0.haqjh.mongodb.net/codingHunt?retryWrites=true&w=majority',{
+dotenv.config({
+    path:"./config/configure.env"
+})
+
+const db_connection = connect(process.env.mongo_url,{
     useNewUrlParser:true,
+    useCreateIndex: true,
     useUnifiedTopology: true
-// },(err,db) => {
-//     console.log("Some" , db.collection)
 })
 .then(() => console.log("Connected to database"))
 .catch((err) => console.log("Error while connecting to DB" , err))
-
-
-// console.log(mongoose.connect)                                                               
-// mongoose.connect.codingHunt.dropCollection('category',(err,res) => {
-//     if(err){
-//         console.log("Error while dropping" , err)
-//     }
-//     console.log("Dropped the collection" , res)
-// })
 
 module.exports =  db_connection;
 

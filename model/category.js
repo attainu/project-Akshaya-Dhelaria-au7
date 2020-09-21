@@ -12,7 +12,7 @@ var categorySchema  = mongoose.Schema({
     },
     Id:{
         type:mongoose.Schema.Types.ObjectId,
-        ref:'signups'
+        ref:'signup'
     }
 })
 
