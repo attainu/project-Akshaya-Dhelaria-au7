@@ -18,7 +18,11 @@ const signupSchema = new mongoose.Schema({
         min:5,
         max:256
     }
-})
+},
+    {
+        versionKey:false
+    }
+)
 
 const signup = mongoose.model('signup' , signupSchema, 'signup')
 

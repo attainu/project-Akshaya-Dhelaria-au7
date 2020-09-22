@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken')
 
 const userAuth = (req, res, next) => {
-    const authHeader = req.headers['Authorization']
+    const authHeader = req.headers['authorization']
     jwt.verify(authHeader, "secret", (err, data) => {
         // console.log(logoutTokens)
         if (err) {

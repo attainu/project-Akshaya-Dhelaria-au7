@@ -3,12 +3,17 @@ const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 
 const controller = {
-    signup: (req,res) => {
+    signup: async (req,res) => {
         let hashedPassword = bcrypt.hashSync(req.body.Password,10)
         let eachUser = new signupSchema({
-            ...req.body
+            Name:req.body.Name,
+            Email:req.body.Email,
+            Password:hashedPassword
         })
-        eachUser.save()
+        // if(!Name || !Email || !Password){
+        //     console.log("Invalid")
+        // }
+        await eachUser.save()
         .then((data) => {
             res.json({
                 message:"Successfully signed in"
@@ -22,8 +27,8 @@ const controller = {
         })
     },
 
-    login:(req,res) => {
-        signupSchema.findOne({
+    login: async (req,res) => {
+        await signupSchema.findOne({
             Email:req.body.Email
         })
         .then((data) => {
@@ -33,8 +38,10 @@ const controller = {
                 })
             }
             let checkPassword = bcrypt.compareSync(req.body.Password,data.Password)
+            // console.log(req.body.Password,data.Password,checkPassword,data)
             if(checkPassword == true){
                 const token = jwt.sign({
+                    user_id:data._id,
                     Email:data.Email
                 },"secret" , {
                     expiresIn:'24hr'

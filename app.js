@@ -6,7 +6,7 @@ var logger = require('morgan');
 var cors = require('cors');
 var dotenv = require('dotenv')
 var db_connection = require('./config/db_connection')
-var PORT = 8000
+var PORT = process.env.PORT || 8000
 var categoryRouter = require('./routes/category');
 var usersRouter = require('./routes/users');
 

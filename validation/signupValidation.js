@@ -14,7 +14,7 @@ const signup = [
         .exists()
         .withMessage('This email alreasy exists')
         .isEmail()
-        .withMessage('Pleade enter your email'),
+        .withMessage('Please enter your email'),
 
     body('Password')
         .not()

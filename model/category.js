@@ -10,10 +10,14 @@ var categorySchema  = mongoose.Schema({
         require:true,
         unique:true
     },
-    Id:{
+    user_id:{
         type:mongoose.Schema.Types.ObjectId,
         ref:'signup'
     }
-})
+},
+    {
+        versionKey:false
+    }
+)
 
 module.exports = mongoose.model('category' , categorySchema , 'category')
