@@ -17,6 +17,9 @@ const signupSchema = new mongoose.Schema({
         required:true,
         min:5,
         max:256
+    },
+    OTP:{
+        type:Number
     }
 },
     {

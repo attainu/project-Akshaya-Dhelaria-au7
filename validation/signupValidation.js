@@ -12,7 +12,7 @@ const signup = [
 
     body('Email')
         .exists()
-        .withMessage('This email alreasy exists')
+        .withMessage('')
         .isEmail()
         .withMessage('Please enter your email'),
 

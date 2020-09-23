@@ -55,12 +55,11 @@ const controller = {
     },
 
     updateCategory : (req,res) => {
-       categorySchema.findByIdAndUpdate({
-            _id:req.params._id,
-            ...req.body
-            // Category: req.body.Category,
-            // Link:req.body.Link
-        })
+       categorySchema.findByIdAndUpdate(
+            {_id:req.params._id},
+            {...req.body},
+            {new:true}
+        )
         .then((data) => {
             if(!data){
                 res.status(403).json({
@@ -68,7 +67,7 @@ const controller = {
                 })
             }
             else{
-                console.log("Update" , data.Category,data.Link)
+                // console.log("Update" , data.Category,data.Link)
                 res.status(200).json({
                     message:"Updated",
                     data:data
@@ -84,8 +83,8 @@ const controller = {
         })
     },
 
-    deleteCategory:(req,res) => {
-        categorySchema.findByIdAndDelete({
+    deleteCategory: async (req,res) => {
+        await categorySchema.findByIdAndDelete({
             _id:req.params._id
         })
         .then((data) => {
