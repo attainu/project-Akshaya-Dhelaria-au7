@@ -27,6 +27,7 @@ class Verifyotp extends Component{
 	otpSubmitHandler = (event) => {
 		this.callingOTPapi()
 		console.log("Submitted OTP")
+		this.props.history.push('/login')
 		event.preventDefault()
 	}
 

@@ -26,6 +26,7 @@ class Login extends Component{
 
     submitHandler = (event) => {
         this.callingLoginApi()
+        this.props.history.push('/')
         event.preventDefault()
         console.log("Done Login")
     }

@@ -14,3 +14,15 @@ li{
     padding: 10px;
     float: left;
 }
+
+.fa-plus{
+	display: inline;
+	position: relative;
+    color: #42b6f5;
+    padding: 0 0 0 0;
+}
+
+button{
+	border: none;
+	background-color: #dddddd
+}

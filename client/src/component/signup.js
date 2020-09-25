@@ -30,7 +30,8 @@ class Signup extends Component{
 
     submitHandler = (event) => {
         this.callingSignupApi()
-        console.log("Done signing" )
+        console.log("Done signing" , this.props)
+        this.props.history.push('/verify')
         event.preventDefault()
     }
 
