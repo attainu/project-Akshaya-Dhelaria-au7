@@ -13,7 +13,7 @@ class Verifyotp extends Component{
 		const otpApi = await Axios.post(`${Backend_URL}/users/verifyotp` , {
             OTP: this.state.OTP
         })
-        .then((data) => console.log("Data is " ,JSON.stringify(data)))
+        .then((data) => this.props.history.push('/login'))
         .catch((err) => console.log("Error while retreiving data" , JSON.stringify(err)))
 	}
 
@@ -27,7 +27,6 @@ class Verifyotp extends Component{
 	otpSubmitHandler = (event) => {
 		this.callingOTPapi()
 		console.log("Submitted OTP")
-		this.props.history.push('/login')
 		event.preventDefault()
 	}
 
@@ -43,7 +42,7 @@ class Verifyotp extends Component{
 				<input placeholder="Enter OTP" type="text" name="OTP" value={OTP} onChange={this.otpHandler}/>
 	            <br />
 	            <br />
-	            <button className="btn btn-info" onSubmit={this.otpSubmitHandler}>Submit OTP</button>
+	            <button className="btn btn-info" onClick={this.otpSubmitHandler}>Submit OTP</button>
             </div>
 		)
 	}

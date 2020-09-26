@@ -6,6 +6,7 @@ import CreateCategory from '../createCategory.js'
 import './navbar.css'
 import Verifyotp from '../verifyOtp';
 import Category from '../landingPage';
+import Links from '../links';
 
 class Navbar extends Component{
     render(){
@@ -40,6 +41,7 @@ class Navbar extends Component{
                         <Route path='/verify' component={Verifyotp} />
                         <Route path='/login' exact component={Login}/>
                         <Route path='/create' exact component={CreateCategory}/>
+                        <Route path='/links' exact component={Links} />
                         <Route path='/' exact component={Category}/>
                     </Switch>
             </Fragment>

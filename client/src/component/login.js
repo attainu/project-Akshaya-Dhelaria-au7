@@ -5,7 +5,8 @@ import Backend_URL from '../deployed/backend.js'
 class Login extends Component{
     state={
         Email:'',
-        Password:''
+        Password:'',
+        data:[]
     }
 
     callingLoginApi = async () => {
@@ -25,7 +26,9 @@ class Login extends Component{
     }
 
     submitHandler = (event) => {
+        const {data} = this.state
         this.callingLoginApi()
+        // localStorage.setItem("access-token" , data.tokenKey)
         this.props.history.push('/')
         event.preventDefault()
         console.log("Done Login")

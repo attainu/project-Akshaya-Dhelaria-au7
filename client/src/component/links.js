@@ -3,7 +3,7 @@ import Axios from 'axios';
 import Backend_URL from '../deployed/backend.js'
 import Spinner from './loader.gif'
 
-class Category extends Component{
+class Links extends Component{
 	state={
 		data:[]
 	}
@@ -21,20 +21,17 @@ class Category extends Component{
         this.callingCreateApi()
     }
     
-    clickHandler = () => {
-        this.props.history.push('/links')
-    }
-
 	render(){
         const {data} = this.state
+        const linkHeader = 'https://'
 		return(
             data.length == 0 ? <img src={Spinner} alt='Loading'/> : data.data.map(each => (
                 <div>
-                    <h4 onClick={this.clickHandler} className="category">{each.Category}</h4>
+                    <a className="link" href={linkHeader + each.Link} target="_blank">ok</a>
                 </div>
             ))
 		)
 	}
 }
 
-export default Category;
+export default Links;

@@ -26,7 +26,7 @@ class CreateCategory extends Component{
 
 	submitHandler = (event) => {
 		this.callingCreateApi()
-		console.log("Create Category")
+		// console.log("Create Category")
 		event.preventDefault()
 	}
 
@@ -36,15 +36,15 @@ class CreateCategory extends Component{
 			<Fragment>
 				<h3>Create the Category </h3>
 				<p></p>
-				<i class='fas fa-code'></i>
+				<i className='fas fa-code'></i>
 				<input name="Category" type="text" placeholder="Category" value={Category} onChange={this.changeHandler}/>
 				<br/>
 				<br/>
-				<i class="fa fa-link"></i>
+				<i className="fa fa-link"></i>
 				<input name="Title" type="text" placeholder="Title" value={Title} onChange={this.changeHandler}/>
 				<br />
 				<br />
-				<button className="btn btn-info" onSubmit={this.submitHandler}>Create Category</button>
+				<button className="btn btn-info" onClick={this.submitHandler}>Create Category</button>
 			</Fragment>
 		)
 	}
