@@ -5,6 +5,10 @@ var categorySchema  = mongoose.Schema({
         type:String,
         required:true
     },
+    Title:{
+        type:String,
+        require:true
+    },
     Link:{
         type:String,
         require:true,
