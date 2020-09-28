@@ -6,6 +6,7 @@ function Footer(){
             <p className="footer">Coding Hunt
                 <i className="fa fa-copyright"></i>
             </p>
+        
         </div>
     )
 }
