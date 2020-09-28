@@ -23,11 +23,11 @@ class Links extends Component{
     
 	render(){
         const {data} = this.state
-        const linkHeader = 'https://'
+        // const linkHeader = 'https://'
 		return(
-            data.length == 0 ? <img src={Spinner} alt='Loading'/> : data.data.map(each => (
+            data.length == 0 ? <img src={Spinner} alt='Loading...'/> : data.data.map(each => (
                 <div>
-                    <a className="link" href={linkHeader + each.Link} target="_blank">ok</a>
+                    <a className="link" href={each.Link} target="_blank">{each.Title}</a>
                 </div>
             ))
 		)

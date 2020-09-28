@@ -1,17 +1,27 @@
 import React , {Component , Fragment} from 'react';
 import Axios from 'axios';
 import Backend_URL from '../deployed/backend.js'
+import { Link } from 'react-router-dom';
 
 class CreateCategory extends Component{
 	state={
 		Category:'',
-		Title:''
+		Title:'',
+		Link:''
 	}
 
 	callingCreateApi = async () => {
+		const token = localStorage.getItem("access-token")
+		const setHeader = {
+			'Content-Type': 'application/json',
+			'authorization': token
+		}
 		await Axios.post(`${Backend_URL}/category`,{
 			Category:this.state.Category,
-			Title:this.state.Title
+			Title:this.state.Title,
+			Link:this.state.Link
+		},{
+			headers:setHeader
 		})
 		.then((data) => console.log(data))
 		.catch((err) => console.log(err))
@@ -26,26 +36,40 @@ class CreateCategory extends Component{
 
 	submitHandler = (event) => {
 		this.callingCreateApi()
+		setTimeout(() => {
+			this.props.history.push('/')
+		},4000)
 		// console.log("Create Category")
 		event.preventDefault()
 	}
 
 	render(){
-		const {Category,Title} = this.state
+		const {Category,Title,Link} = this.state
+		const accessToken = localStorage.getItem('access-token')
 		return(
-			<Fragment>
-				<h3>Create the Category </h3>
-				<p></p>
-				<i className='fas fa-code'></i>
-				<input name="Category" type="text" placeholder="Category" value={Category} onChange={this.changeHandler}/>
-				<br/>
-				<br/>
-				<i className="fa fa-link"></i>
-				<input name="Title" type="text" placeholder="Title" value={Title} onChange={this.changeHandler}/>
-				<br />
-				<br />
-				<button className="btn btn-info" onClick={this.submitHandler}>Create Category</button>
-			</Fragment>
+				<Fragment>
+				{
+					localStorage.getItem('access-token') ? <span></span> : <p style={{color:'red'}}>Log in again</p>
+				}
+					<h3>Create the Category </h3>
+					<p></p>
+					<i class="fa fa-th" aria-hidden="true"></i>
+					<input name="Category" type="text" placeholder="Category" value={Category} onChange={this.changeHandler}/>
+					<br/>
+					<br/>
+					<i class="fa fa-list" aria-hidden="true"></i>
+					<input name="Title" type="text" placeholder="Title" value={Title} onChange={this.changeHandler}/>
+					<br />
+					<br />
+					<i className="fa fa-link" aria-hidden="true"></i>
+					<input name="Link" type="text" placeholder="Link" value={Link} onChange={this.changeHandler}/>
+					<br />
+					<br />
+					<button className="btn btn-info" onClick={this.submitHandler} disabled={!accessToken}>Create Category</button>
+					{/*
+					// 	localStorage.getItem('access-token') ? <span></span> : <p>Log in again</p>
+					*/ }
+				</Fragment>
 		)
 	}
 }

@@ -11,14 +11,13 @@ class Signup extends Component{
         Password:''
     }
     callingSignupApi = async () => {
-        console.log(Backend_URL)
         const trial = await Axios.post(`${Backend_URL}/users/signup` , {
             Name:this.state.Name,
             Email:this.state.Email,
             Password:this.state.Password
         })
         .then((data) => console.log("Data is " ,JSON.stringify(data)))
-        .catch((err) => console.log("Error while retreiving data" , err))
+        .catch((err) => console.log("Error while retreiving data" , err.response.message))
     }
 
     changeHandler = (event) => {
@@ -30,14 +29,13 @@ class Signup extends Component{
 
     submitHandler = (event) => {
         this.callingSignupApi()
-        console.log("Done signing" , this.props)
         this.props.history.push('/verify')
         event.preventDefault()
     }
 
     render(){
         const {Name,Email,Password} = this.state
-        const enableButton = Name.length>6 && Email.includes('@') && Email.includes('.') && Password.length>6
+        const enableButton = Name.length>5 && Email.includes('@') && Email.includes('.') && Password.length>5
         return(
             <form className="form-group" onSubmit={this.submitHandler}>
                 <h3>Welcome to Coding Hunt</h3>
@@ -46,7 +44,7 @@ class Signup extends Component{
                 <i className="fa fa-user icon" />
                 <input name="Name" type="text" placeholder="Full Name" value={Name} onChange={this.changeHandler} />
                 {
-                   Name.length === 0 ? <span></span> : Name.length<7 && Name.length>0 ? <p style={{color:'red'}}>Should be more than 6 characters</p>: <p style={{color:'green'}}>Perfect</p>
+                   Name.length === 0 ? <span></span> : Name.length<6 && Name.length>0 ? <p style={{color:'red'}}>Name should be more than 5 characters</p>: <p style={{color:'green'}}>Perfect</p>
                 }
                 <br />
                 <br />
@@ -64,7 +62,7 @@ class Signup extends Component{
                 }
                 <br />
                 <br />
-                <button className="btn btn-info">Create Account</button>
+                <button className="btn btn-info" disabled={!enableButton}>Create Account</button>
                 <br />
                 <p>Already have account?<Link to='/login'>Login</Link><Switch><Route path='/login' exact /></Switch></p>
             </form>

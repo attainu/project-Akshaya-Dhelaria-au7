@@ -6,16 +6,21 @@ class Login extends Component{
     state={
         Email:'',
         Password:'',
-        data:[]
+        error:''
     }
 
     callingLoginApi = async () => {
-        const trial = await Axios.post(`${Backend_URL}/users/login` , {
+        await Axios.post(`${Backend_URL}/users/login` , {
             Email:this.state.Email,
             Password:this.state.Password
+        },{
+            // headers:`authorization: ${data.data.tokenKey}`
         })
-        .then((data) => console.log("Data is " ,JSON.stringify(data)))       
-        .catch((err) => console.log("Error while retreiving data" , JSON.stringify(err)))
+        .then((data) => {
+            // console.log(data.data.tokenKey)
+            localStorage.setItem('access-token' , data.data.tokenKey)
+        })
+        .catch((err) => console.log("Error while retreiving data" , JSON.stringify(err.response)))
     }
 
     changeHandler = (event) => {
@@ -26,12 +31,9 @@ class Login extends Component{
     }
 
     submitHandler = (event) => {
-        const {data} = this.state
         this.callingLoginApi()
-        // localStorage.setItem("access-token" , data.tokenKey)
         this.props.history.push('/')
         event.preventDefault()
-        console.log("Done Login")
     }
 
     render(){
@@ -55,7 +57,7 @@ class Login extends Component{
                 }
                 <br />
                 <br />
-                <button className="btn btn-info">Login</button>
+                <button className="btn btn-info" disabled={!enableButton}>Login</button>
             </form>
         )
     }

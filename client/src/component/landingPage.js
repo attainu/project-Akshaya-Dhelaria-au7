@@ -20,7 +20,7 @@ class Category extends Component{
     componentDidMount(){
         this.callingCreateApi()
     }
-    
+
     clickHandler = () => {
         this.props.history.push('/links')
     }
@@ -28,7 +28,7 @@ class Category extends Component{
 	render(){
         const {data} = this.state
 		return(
-            data.length == 0 ? <img src={Spinner} alt='Loading'/> : data.data.map(each => (
+            data.length == 0 ? <img src={Spinner} alt='Loading...'/> : data.data.map(each => (
                 <div>
                     <h4 onClick={this.clickHandler} className="category">{each.Category}</h4>
                 </div>

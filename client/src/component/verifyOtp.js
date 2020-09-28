@@ -5,16 +5,18 @@ import Backend_URL from '../deployed/backend.js'
 
 class Verifyotp extends Component{
 	state={
-		OTP:''
+		OTP:'',
+		error:''
 	}
 
 	callingOTPapi = async () => {
-		console.log("Api called")
 		const otpApi = await Axios.post(`${Backend_URL}/users/verifyotp` , {
             OTP: this.state.OTP
-        })
+		})
+		// .then((data) => console.log(data))
         .then((data) => this.props.history.push('/login'))
-        .catch((err) => console.log("Error while retreiving data" , JSON.stringify(err)))
+		// .catch((err) => console.log("Error while retreiving data" , (err.response)))
+		.catch((err) => this.setState({error:err.response.data.message}))
 	}
 
 	otpHandler = (event) => {
@@ -31,9 +33,13 @@ class Verifyotp extends Component{
 	}
 
 	render(){
-		const {OTP} = this.state
+		const {OTP,error} = this.state
+		console.log("Error is" , error)
 		return(
 			<div className = "otp">
+				{
+					error ? <p style={{color:'red'}}>{error}</p> : <span></span>
+				}
 				<h3>Thank you for signing up with us. </h3>
 				<br />
 				<p>Please verify your Email to continue with us.</p>
@@ -41,8 +47,11 @@ class Verifyotp extends Component{
 				<i className="fa fa-key icon" />
 				<input placeholder="Enter OTP" type="text" name="OTP" value={OTP} onChange={this.otpHandler}/>
 	            <br />
-	            <br />
-	            <button className="btn btn-info" onClick={this.otpSubmitHandler}>Submit OTP</button>
+				<br />
+				{/*
+					!error ? <button className="btn btn-info" onClick={this.otpSubmitHandler} >Submit OTP</button> : <p>{error}</p>  
+				*/}
+				<button className="btn btn-info" onClick={this.otpSubmitHandler}>Submit OTP</button>
             </div>
 		)
 	}
