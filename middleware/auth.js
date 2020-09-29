@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken')
 
 const userAuth = (req, res, next) => {
     const authHeader = req.headers['authorization']
-    jwt.verify(authHeader, "secret", (err, data) => {
+    jwt.verify(authHeader, "coding", (err, data) => {
         // console.log(logoutTokens)
         if (err) {
             console.log("error in auth is " + JSON.stringify(err))

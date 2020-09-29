@@ -16,8 +16,13 @@ const sendEmail = async options => {
         subject:'Welcome to Coding Hunt',
         html: 
         `<div>
-            <h3 style="color:red;">Welcome to our page</h3>
-            <p>Please verify the otp ${options.message} sent to you</p>
+            <h3><strong>Welcome to Coding Hunt<strong></h3>
+            <br>
+            <p>Please use the below OTP to sign in to Coding Hunt</p>
+            <p><strong>${options.message}</strong></p>
+            <br>
+            <p>Regards,</p>
+            <p>Team Coding Hunt</p>
         </div>
         `
     }

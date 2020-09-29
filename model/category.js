@@ -1,11 +1,11 @@
 const mongoose = require("mongoose")
 const Schema = mongoose.Schema
 
-var categorySchema  = Schema({
+var categorySchema  = new Schema({
     Category:{
         type:String,
         required:true,
-        unique:true
+        // unique:true
     },
     Title:{
         type:String,
@@ -18,8 +18,7 @@ var categorySchema  = Schema({
     },
     posted_by:{
         type:Schema.Types.ObjectId,
-        ref:'signup',
-        required:true
+        ref:"signup"
     }
 },
     {

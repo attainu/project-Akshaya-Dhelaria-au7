@@ -3,11 +3,11 @@ const categorySchema = require('../model/category')
 const controller = {
     createCategory: async (req,res) => {
         let eachCategory = new categorySchema({
-            ...req.body
+            ...req.body,
+            posted_by:req.app.get("data1").user_id
         })
         await eachCategory.save()
         .then((data) => {
-            // console.log("User id is" , data.user_id)
             console.log("Data is" , data)
             res.status(200).json({
                 message:"Category created",

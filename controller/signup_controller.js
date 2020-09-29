@@ -37,8 +37,8 @@ const controller = {
             })
         })
         .catch((err)=>{
-            console.log("Error is : ",JSON.stringify(err).indexOf("This email already exists"))
-            if(JSON.stringify(err).indexOf("This email already exists")>-1){
+            // console.log("Error is : ",JSON.stringify(err.message).indexOf("E11000 duplicate key error collection"),JSON.stringify(err.message))
+            if(JSON.stringify(err.message).indexOf("E11000 duplicate key error collection")>-1){
                 res.status(400).json({
                     error:"Email already exists!!!"
                 })
@@ -96,12 +96,13 @@ const controller = {
                 const token = jwt.sign({
                     user_id:data._id,
                     Email:data.Email
-                },"secret" , {
+                },"coding" , {
                     expiresIn:'24hr'
                 })
                 res.status(200).json({
                     message:"Successfully logged in",
-                    tokenKey:token
+                    tokenKey:token,
+                    user_id:data._id
                 })
             }
             else{
