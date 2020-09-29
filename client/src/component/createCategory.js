@@ -41,6 +41,7 @@ class CreateCategory extends Component{
 		},4000)
 		// console.log("Create Category")
 		event.preventDefault()
+		
 	}
 
 	render(){
@@ -49,7 +50,10 @@ class CreateCategory extends Component{
 		return(
 				<Fragment>
 				{
-					localStorage.getItem('access-token') ? <span></span> : <p style={{color:'red'}}>Log in again</p>
+					localStorage.getItem('access-token') ? <span></span> : 
+					<div class="alert alert-danger" role="alert" style={{justifyContent:'center',width:'30vw',marginLeft:'450px'}}>
+						Log in to create category
+				  	</div>
 				}
 					<h3>Create the Category </h3>
 					<p></p>
@@ -66,9 +70,6 @@ class CreateCategory extends Component{
 					<br />
 					<br />
 					<button className="btn btn-info" onClick={this.submitHandler} disabled={!accessToken}>Create Category</button>
-					{/*
-					// 	localStorage.getItem('access-token') ? <span></span> : <p>Log in again</p>
-					*/ }
 				</Fragment>
 		)
 	}

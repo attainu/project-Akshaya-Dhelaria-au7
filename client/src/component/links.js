@@ -5,20 +5,23 @@ import Spinner from './loader.gif'
 
 class Links extends Component{
 	state={
-		data:[]
+        data:[],
+        Category:''
 	}
 
 	callingCreateApi = async () => {
-        const {data} = this.state
-		await Axios.get(`${Backend_URL}/allcategory`)
-		.then((data) => this.setState({
-            data:data.data
-        }))
-		.catch((err) => console.log(err))
+		await Axios.post(`${Backend_URL}/${this.props.match.params.Category}`,{
+            Category:this.state.Category
+        })
+        // .then((data) => console.log("data in category is" , data.data.data))
+        .then((data) => this.setState({data:data.data}))
+		.catch((err) => console.log(err.response))
     }
     
     componentDidMount(){
         this.callingCreateApi()
+        // this.props.match.params.Category = 'React'
+        console.log("Props" , this.props)
     }
     
 	render(){

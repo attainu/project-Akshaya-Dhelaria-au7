@@ -14,15 +14,15 @@ class Category extends Component{
 		.then((data) => this.setState({
             data:data.data
         }))
-		.catch((err) => console.log(err))
+		.catch((err) => console.log(err.response))
     }
     
     componentDidMount(){
         this.callingCreateApi()
     }
 
-    clickHandler = () => {
-        this.props.history.push('/links')
+    clickHandler = (category) => {
+        this.props.history.push(`/${category}`)
     }
 
 	render(){
@@ -30,7 +30,7 @@ class Category extends Component{
 		return(
             data.length == 0 ? <img src={Spinner} alt='Loading...'/> : data.data.map(each => (
                 <div>
-                    <h4 onClick={this.clickHandler} className="category">{each.Category}</h4>
+                    <h4 onClick={() => this.clickHandler(each.Category)} className="category">{each.Category}</h4>
                 </div>
             ))
 		)

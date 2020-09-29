@@ -38,7 +38,9 @@ class Verifyotp extends Component{
 		return(
 			<div className = "otp">
 				{
-					error ? <p style={{color:'red'}}>{error}</p> : <span></span>
+					error ? <div class="alert alert-danger" role="alert" style={{justifyContent:'center'}}>
+					{error}
+				  </div> : <span></span>
 				}
 				<h3>Thank you for signing up with us. </h3>
 				<br />

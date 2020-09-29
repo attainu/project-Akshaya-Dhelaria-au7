@@ -41,7 +41,7 @@ class Navbar extends Component{
                         <Route path='/verify' component={Verifyotp} />
                         <Route path='/login' exact component={Login}/>
                         <Route path='/create' exact component={CreateCategory}/>
-                        <Route path='/links' exact component={Links} />
+                        <Route path='/:Category' exact component={Links} />
                         <Route path='/' exact component={Category}/>
                     </Switch>
             </Fragment>
