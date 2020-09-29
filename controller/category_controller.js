@@ -134,6 +134,27 @@ const controller = {
                 error:err
             })
         })
+    },
+    likePost : async(req, res) => {
+        try{
+            
+            const post = await categorySchema.findById(req.params._id)
+            let data = post.like
+            // console.log(data)
+            data.push(req.user._id)
+           
+            const newPost =await categorySchema.findByIdAndUpdate(req.params._id, {
+                like: data
+            }, {new: true,
+            runValidators: true})
+          
+            res.status(201).json({
+                status: 'success',
+                data: newPost
+              });
+        }catch(err){
+            console.log(err)
+        }
     }
 }
 
