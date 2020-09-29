@@ -1,16 +1,17 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-var cors = require('cors');
-var dotenv = require('dotenv')
-var db_connection = require('./config/db_connection')
-var PORT = process.env.PORT || 8000
-var categoryRouter = require('./routes/category');
-var usersRouter = require('./routes/users');
+// requiring the necessary modules.
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const cors = require('cors');
+const dotenv = require('dotenv')
+const db_connection = require('./config/db_connection')
+const PORT = process.env.PORT || 8000
+const categoryRouter = require('./routes/category');
+const usersRouter = require('./routes/users');
 
-var app = express();
+const app = express();
 
 dotenv.config({
   path:"./config/config.env"
