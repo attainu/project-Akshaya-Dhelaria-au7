@@ -1,9 +1,11 @@
-const mongoose = require('mongoose')
+const mongoose = require("mongoose")
+const Schema = mongoose.Schema
 
-var categorySchema  = mongoose.Schema({
+var categorySchema  = Schema({
     Category:{
         type:String,
-        required:true
+        required:true,
+        unique:true
     },
     Title:{
         type:String,
@@ -14,13 +16,15 @@ var categorySchema  = mongoose.Schema({
         require:true,
         unique:true
     },
-    user_id:{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:'signup'
+    posted_by:{
+        type:Schema.Types.ObjectId,
+        ref:'signup',
+        required:true
     }
 },
     {
-        versionKey:false
+        versionKey:false,
+        timestamp:true
     }
 )
 

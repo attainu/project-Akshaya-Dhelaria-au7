@@ -7,6 +7,7 @@ const controller = {
         })
         await eachCategory.save()
         .then((data) => {
+            // console.log("User id is" , data.user_id)
             console.log("Data is" , data)
             res.status(200).json({
                 message:"Category created",
@@ -54,10 +55,37 @@ const controller = {
         }
     },
 
+    getLinkOnTheBasisOfCategory: (req,res) => {
+        categorySchema.where({Category:req.params.Category}).exec((err,result) => {
+            if(err){
+                console.log("Error in get link" , JSON.stringify(err))
+                res.status(500).json({
+                    message:"Error while getting data ",
+                    error:err.message
+                })
+            }else{
+                if(result.length == 0){
+                    res.status(404).json({
+                        message:"No links found"
+                    })
+                }else{
+                    console.log("Result in link" , result)
+                    res.status(200).json({
+                        message:"List of Links",
+                        data:result
+                    })
+                }
+            }
+        })
+    },
+
     updateCategory : (req,res) => {
        categorySchema.findByIdAndUpdate(
             {_id:req.params._id},
-            {...req.body},
+            {
+                Title:req.body.Title,
+                Link:req.body.Link
+            },
             {new:true}
         )
         .then((data) => {

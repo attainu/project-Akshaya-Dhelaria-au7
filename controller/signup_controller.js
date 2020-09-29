@@ -79,7 +79,7 @@ const controller = {
     },
 
     login: async (req,res) => {
-        await signupSchema.findOne({
+        signupSchema.findOne({
             Email:req.body.Email
         })
         .then((data) => {
@@ -90,8 +90,9 @@ const controller = {
                 })
             }
             let checkPassword = bcrypt.compareSync(req.body.Password,data.Password)
-            console.log(req.body.Password,data.Password,checkPassword)
+            console.log(req.body.Password,data.Password , checkPassword)
             if(checkPassword == true){
+                // console.log("JWT", data._id)
                 const token = jwt.sign({
                     user_id:data._id,
                     Email:data.Email

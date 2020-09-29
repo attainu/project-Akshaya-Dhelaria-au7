@@ -1,6 +1,6 @@
-const mongoose = require('mongoose')
+const {Schema, model} = require('mongoose')
 
-const signupSchema = new mongoose.Schema({
+const signupSchema = new Schema({
     Name:{
         type:String,
         required:true,
@@ -27,6 +27,6 @@ const signupSchema = new mongoose.Schema({
     }
 )
 
-const signup = mongoose.model('signup' , signupSchema, 'signup')
+const signup = model('signup' , signupSchema, 'signup')
 
 module.exports = signup;
