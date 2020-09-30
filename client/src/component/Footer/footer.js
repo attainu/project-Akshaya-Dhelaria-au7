@@ -1,15 +1,20 @@
 import React from 'react';
-import {Link} from 'react-router-dom'
+import {Link,Route,Switch} from 'react-router-dom'
+import About from '../About/about';
+import './footer.css'
 
 function Footer(){
     return(
         <div>
             <p className="footer">Coding Hunt
                 <i className="fa fa-copyright"></i>
+            {
+                <Link to='/about' className="about-footer" >About</Link>
+            }
             </p>
-            {/*
-                <Link to='/about' >About</Link>
-            */}
+            <Switch>
+                <Route path='/about' exact component={About}/>
+            </Switch>
         </div>
     )
 }

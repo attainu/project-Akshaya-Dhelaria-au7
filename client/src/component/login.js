@@ -43,14 +43,14 @@ class Login extends Component{
                 <i className="fa fa-envelope" /> 
                 <input name="Email" type="email" placeholder="Email" value={Email} onChange={this.changeHandler}/>
                 {
-                    Email.length === 0 ? <span></span> : Email.length<6 || !Email.includes('@') || !Email.includes('.')  ? <p style={{color:'red'}}>Email should be valid</p> : <p style={{color:'green'}}>Perfect</p>
+                    Email.length === 0 ? <span></span> : Email.length<6 || !Email.includes('@') || !Email.includes('.')  ? <p className="para" style={{color:'red'}}>Email should be valid</p> : <p className="para" style={{color:'green'}}>Perfect</p>
                 }
                 <br />
                 <br />
                 <i className="fa fa-key icon" />
                 <input placeholder="Password" type="password" name="Password" value={Password} onChange={this.changeHandler}/>
                 {
-                    Password.length === 0 ? <span></span> : Password.length<6 && Password.length>0 ? <p style={{color:'red'}}>Should be more than 5 characters</p> : <p style={{color:'green'}}>Perfect</p>
+                    Password.length === 0 ? <span></span> : Password.length<6 && Password.length>0 ? <p className="para" style={{color:'red'}}>Should be more than 5 characters</p> : <p className="para" style={{color:'green'}}>Perfect</p>
                 }
                 <br />
                 <br />

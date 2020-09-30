@@ -1,5 +1,5 @@
 import React , {Component , Fragment} from 'react';
-import {Route,Switch,Link} from 'react-router-dom'
+import {Route,Switch,Link , Redirect} from 'react-router-dom'
 import Signup from '../signup';
 import Login from '../login';
 import CreateCategory from '../createCategory.js'
@@ -10,6 +10,7 @@ import Links from '../links';
 import About from '../About/about';
 import Profile from '../Profile/userProfile';
 import Logout from '../logout';
+import UpdateProfile from '../Profile/updateUserProfile'
 
 function Navbar(){
     const logoutHandler = () =>{
@@ -50,7 +51,7 @@ function Navbar(){
                                     </Link>
                                 </li>
                                 <li className="nav-item active">
-                                    <Link to='/profile'>
+                                    <Link to='/profile/allcategories'>
                                     <button className="button-nav">Profile</button>
                                     </Link>
                                 </li>
@@ -70,8 +71,8 @@ function Navbar(){
                         <Route path='/create' exact component={CreateCategory}/>
                         <Route path='/:Category' exact component={Links} />
                         <Route path='/' exact component={Category}/>
-                        <Route path='/about' exact component={About}/>
-                        <Route path='/profile' exact component={Profile} />
+                        <Route path='/profile/allcategories' exact component={Profile} />
+                        <Route path='/profile/updating/:_id' exact component={UpdateProfile}/>
                         <Route path='/login' exact component={Logout} />
                     </Switch>
             </Fragment>

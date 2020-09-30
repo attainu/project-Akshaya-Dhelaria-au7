@@ -10,13 +10,8 @@ function Logout(){
         .catch((err) => console.log("Logout" , err))
     }
 
-    const logoutHandler = () =>{
-        logoutApi()
-        localStorage.removeItem('access-token')
-    }
-
     return(
-        <button onClick={logoutHandler}>Logout</button>
+        <button onClick={logoutApi()}>Logout</button>
     )
 }
 

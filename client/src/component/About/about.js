@@ -7,9 +7,10 @@ function About(){
             <div className="tag-line">  
                 <h3 className="heading">Our goal is to make online education <br /> available for everyone.</h3>
             </div>
-
+            <br/>
             <div className="about-us">
                 <h2 className="heading-about-us">About Us</h2>
+                <br/>
                 <p className="para-about-us">We at Coding Hunt aggregate courses from many providers to make it easy to find the best courses on almost any subject, wherever they exist on the web. 
                 <br />
                 <br />

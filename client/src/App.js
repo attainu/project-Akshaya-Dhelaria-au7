@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import Navbar from './component/Navbar/Navbar.js';
 import Footer from './component/Footer/footer.js';
-// import About from './component/About/about';
+// import Profile from './component/Profile/userProfile';
 
 function App() {
   return (

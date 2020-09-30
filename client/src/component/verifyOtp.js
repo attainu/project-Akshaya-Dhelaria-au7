@@ -44,7 +44,7 @@ class Verifyotp extends Component{
 				}
 				<h3>Thank you for signing up with us. </h3>
 				<br />
-				<p>Please check your mail. We have sent OTP.</p>
+				<p className="para">Please check your mail. We have sent OTP.</p>
 				<br />
 				<i className="fa fa-key icon" />
 				<input placeholder="Enter OTP" type="text" name="OTP" value={OTP} onChange={this.otpHandler}/>

@@ -36,9 +36,10 @@ class CreateCategory extends Component{
 
 	submitHandler = (event) => {
 		this.callingCreateApi()
-		setTimeout(() => {
-			this.props.history.push('/')
-		},4000)
+		// setTimeout(() => {
+			
+		// },4000)
+		this.props.history.push('/')
 		// console.log("Create Category")
 		event.preventDefault()
 		
@@ -56,7 +57,7 @@ class CreateCategory extends Component{
 				  	</div>
 				}
 					<h3>Create the Category </h3>
-					<p></p>
+					<br/>
 					<i class="fa fa-th" aria-hidden="true"></i>
 					<input name="Category" type="text" placeholder="Category" value={Category} onChange={this.changeHandler}/>
 					<br/>
