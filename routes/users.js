@@ -11,5 +11,6 @@ router.post('/signup' , signup , validationResults , controller.signup)
 router.post('/login' , login , validationResults , controller.login)
 router.post('/verifyotp' , controller.verifyOtp)
 router.get('/allcategory' , getAllCategories)
+router.get('/logout' , userAuth , controller.logout)
 
 module.exports = router;

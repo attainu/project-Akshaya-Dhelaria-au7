@@ -7,33 +7,60 @@ import './navbar.css'
 import Verifyotp from '../verifyOtp';
 import Category from '../landingPage';
 import Links from '../links';
+import About from '../About/about';
+import Profile from '../Profile/userProfile';
+import Logout from '../logout';
 
-class Navbar extends Component{
-    render(){
+function Navbar(){
+    const logoutHandler = () =>{
+        localStorage.removeItem('access-token')
+    }
         return(
             <Fragment>
                 <nav className="navbar navbar-expand-lg navbar-light bg-light">
                     <ul className="navbar-nav">
                         <li className="nav-item active">
-                            <Link to='/signup'>
-                            <button>Signup</button>
-                            </Link>
-                        </li>
-                        <li className="nav-item active">
-                            <Link to='/login'>
-                            <button>Login</button>
-                            </Link>
-                        </li>
-                        <li className="nav-item active">
-                            <i className="fa fa-plus"></i>
-                            <Link to='/create'>
-                            <button>Create Category</button>
-                            </Link>
-                        </li>
-                        <li className="nav-item active">
                             <Link to='/'>
+                            <img className="logo" src='./ch.jpg' alt="Logo" />
                             </Link>
                         </li>
+                        {
+                            !localStorage.getItem('access-token') ?
+                            <Fragment>
+                                <li className="nav-item active">
+                                    <Link to='/signup'>
+                                    <button className="button-nav">Signup</button>
+                                    </Link>
+                                </li>
+                                <li className="nav-item active">
+                                    <Link to='/login'>
+                                    <button className="button-nav">Login</button>
+                                    </Link>
+                                </li>
+                            </Fragment> :
+                            <Fragment>
+                                <li className="nav-item active">
+                                    <i className="fa fa-plus"></i>
+                                    <Link to='/create'>
+                                    <button className="button-nav">Create Category</button>
+                                    </Link>
+                                </li>
+                                <li className="nav-item active">
+                                    <Link to='/'>
+                                    </Link>
+                                </li>
+                                <li className="nav-item active">
+                                    <Link to='/profile'>
+                                    <button className="button-nav">Profile</button>
+                                    </Link>
+                                </li>
+                                <li className="nav-item active">
+                                    <Link to='/login'>
+                                    <button onClick={logoutHandler} className="button-nav">Logout</button>
+                                    </Link>
+                                </li>
+                            </Fragment>
+                        }
                     </ul>
                 </nav>
                     <Switch>
@@ -43,10 +70,12 @@ class Navbar extends Component{
                         <Route path='/create' exact component={CreateCategory}/>
                         <Route path='/:Category' exact component={Links} />
                         <Route path='/' exact component={Category}/>
+                        <Route path='/about' exact component={About}/>
+                        <Route path='/profile' exact component={Profile} />
+                        <Route path='/login' exact component={Logout} />
                     </Switch>
             </Fragment>
         )
-    }
 }
 
 export default Navbar;

@@ -29,8 +29,12 @@ class Category extends Component{
         const {data} = this.state
 		return(
             data.length == 0 ? <img src={Spinner} alt='Loading...'/> : data.data.map(each => (
-                <div>
-                    <h4 onClick={() => this.clickHandler(each.Category)} className="category">{each.Category}</h4>
+                <div class="container-fluid">
+                    <div className="row">
+                        <div className="col-xs-7 col-sm-6 col-lg-8">
+                            <h4 onClick={() => this.clickHandler(each.Category)} className="category">{each.Category}</h4>
+                        </div>
+                    </div>
                 </div>
             ))
 		)

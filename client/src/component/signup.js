@@ -8,16 +8,19 @@ class Signup extends Component{
     state={
         Name:'',
         Email:'',
-        Password:''
+        Password:'',
+        error:''
     }
     callingSignupApi = async () => {
+        // const {Email_error} = this.state.error
         const trial = await Axios.post(`${Backend_URL}/users/signup` , {
             Name:this.state.Name,
             Email:this.state.Email,
             Password:this.state.Password
         })
         .then((data) => console.log("Data is " ,JSON.stringify(data)))
-        .catch((err) => console.log("Error while retreiving data" , err.response.message))
+        // .catch((err) => console.log("Error while retreiving data" , JSON.stringify(err.response.data.error)))
+        .catch((err) => this.setState({error: err.response.data.error }))
     }
 
     changeHandler = (event) => {
@@ -29,12 +32,13 @@ class Signup extends Component{
 
     submitHandler = (event) => {
         this.callingSignupApi()
-        this.props.history.push('/verify')
+        // this.props.history.push('/verify')
         event.preventDefault()
     }
 
     render(){
-        const {Name,Email,Password} = this.state
+        const {Name,Email,Password,error} = this.state
+        // console.log(error)
         const enableButton = Name.length>5 && Email.includes('@') && Email.includes('.') && Password.length>5
         return(
             <form className="form-group" onSubmit={this.submitHandler}>
@@ -51,7 +55,7 @@ class Signup extends Component{
                 <i className="fa fa-envelope" /> 
                 <input name="Email" type="email" placeholder="Email" value={Email} onChange={this.changeHandler}/>
                 {
-                    Email.length === 0 ? <span></span> : Email.length<6 || !Email.includes('@') || !Email.includes('.')  ? <p style={{color:'red'}}>Email should be valid</p> : <p style={{color:'green'}}>Perfect</p>
+                    Email.length === 0 ? <span></span> : Email.length<6 || !Email.includes('@') || !Email.includes('.')  ? <p style={{color:'red'}}>Email should be valid</p> : error.length>0 ? <p style={{color:'red'}}>{error}</p> :<p style={{color:'green'}}>Perfect</p>
                 }
                 <br />
                 <br />

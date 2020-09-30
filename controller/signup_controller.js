@@ -118,6 +118,12 @@ const controller = {
                 error:err.message
             })
         })
+    },
+    logout:(req,res)=>{
+        // console.log("Logged out")
+        res.status(200).json({
+            message:"Successfully logged Out"
+        })
     }
 }
 

@@ -13,11 +13,8 @@ class Login extends Component{
         await Axios.post(`${Backend_URL}/users/login` , {
             Email:this.state.Email,
             Password:this.state.Password
-        },{
-            // headers:`authorization: ${data.data.tokenKey}`
         })
         .then((data) => {
-            // console.log(data.data.tokenKey)
             localStorage.setItem('access-token' , data.data.tokenKey)
         })
         .catch((err) => console.log("Error while retreiving data" , JSON.stringify(err.response)))

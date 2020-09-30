@@ -1,35 +1,36 @@
+
 .tag-line{
     text-align: center;
     padding: 7%;
     margin: 2%;
     width: 80%;
     margin-left: 12%;    
-}
-
+  }
+  
 .heading{
     font-size: 2rem;
     line-height: 1.5;
     font-weight: bolder;
-    color: rgb(235, 217, 217);
+    color: rgb(243, 72, 72);
 }
-
-.about-us{ 
+  
+  .about-us{ 
     margin-top: 5%;
     /* padding: 2%; */
     text-align: center;   
-}
-
-.heading-about-us{
+  }
+  
+  .heading-about-us{
     font-weight: bold;
     color:rgb(1, 1, 24);
     /* padding: 2%; */
     
-}
-.para-about-us{
+  }
+  .para-about-us{
     width: 60%;
     margin-left: 20%;
     line-height: 1.5;
     font-weight: bold;
     font-size: 1rem;
     color: grey;
-}
+  }

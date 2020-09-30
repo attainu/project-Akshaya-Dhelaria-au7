@@ -9,6 +9,7 @@ var db_connection = require('./config/db_connection')
 var PORT = process.env.PORT || 8000
 var categoryRouter = require('./routes/category');
 var usersRouter = require('./routes/users');
+var profileRouter = require('./routes/profile')
 
 var app = express();
 
@@ -29,6 +30,7 @@ app.use(cors())
 
 app.use('/api/v1', categoryRouter);
 app.use('/api/v1/users', usersRouter);
+app.use('/api/v1/profile' , profileRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

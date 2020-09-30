@@ -28,3 +28,14 @@ button{
     background-color: #dddddd
     /* background-color: white; */
 }
+
+.logo{
+    width: 3vw;
+    height: 5vh;
+    margin: auto;
+    background-color: #dddddd;
+}
+
+.button-nav{
+    border-color: blue;
+}

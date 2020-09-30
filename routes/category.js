@@ -9,5 +9,5 @@ router.get('/allcategory' , getAllCategories)
 router.post('/:Category' , getLinkOnTheBasisOfCategory)
 router.put('/update/:_id' , userAuth , categoryValidation , updateCategory)
 router.delete('/delete/:_id' , userAuth , deleteCategory)
-router.post('/like')
+
 module.exports = router;
