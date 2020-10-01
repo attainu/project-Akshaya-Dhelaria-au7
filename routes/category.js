@@ -4,10 +4,9 @@ var {createCategory , getAllCategories , updateCategory , deleteCategory , getLi
 var categoryValidation = require('../validation/category_validation')
 var userAuth = require('../middleware/auth')
 
-router.post('/category' ,categoryValidation, userAuth , createCategory)
+router.post('/category' , userAuth , createCategory)
 router.get('/allcategory' , getAllCategories)
-router.post('/:Category' , getLinkOnTheBasisOfCategory)
-router.put('/update/:_id' , userAuth , categoryValidation , updateCategory)
+router.put('/update/:_id' , userAuth  , updateCategory)
 router.delete('/delete/:_id' , userAuth , deleteCategory)
 
 module.exports = router;

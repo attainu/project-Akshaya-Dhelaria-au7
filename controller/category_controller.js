@@ -1,4 +1,4 @@
-const categorySchema = require('../model/category')
+const categorySchema = require('../model/category_schema')
 
 const controller = {
     createCategory: async (req,res) => {
@@ -35,7 +35,7 @@ const controller = {
                 else{
                     if(data.length == 0){
                         res.status(403).json({
-                            message:"No category found."
+                            message:"No category exists!!."
                         })
                     }
                     else{
@@ -83,8 +83,7 @@ const controller = {
        categorySchema.findByIdAndUpdate(
             {_id:req.params._id},
             {
-                Title:req.body.Title,
-                Link:req.body.Link
+                Category:req.body.Category
             },
             {new:true}
         )

@@ -1,11 +1,9 @@
-const categorySchema = require('../model/category')
-const signupSchema = require('../model/signup_schema')
-
+const titleSchema = require('../model/title_schema')
 
 const profileController = {
     
     findCategoriesOfUser : (req,res) => {
-        categorySchema.find({posted_by:req.app.get("data1").user_id},(err,result) => {
+        titleSchema.find({posted_by:req.app.get("data1").user_id},(err,result) => {
             if(err){
                 console.log("Error while getting user's link" , JSON.stringify(err))
                 res.status(500).json({
@@ -28,7 +26,7 @@ const profileController = {
     },
 
     updateCategoriesPostedByUser:(req,res) => {
-        categorySchema.where({posted_by:req.app.get("data1").user_id}).findOneAndUpdate(
+        titleSchema.where({posted_by:req.app.get("data1").user_id}).findOneAndUpdate(
             {_id:req.params._id},
             {
                 Title:req.body.Title,
@@ -39,7 +37,7 @@ const profileController = {
         .then((data) => {
             if(!data){
                 res.status(403).json({
-                    message:"No Category Available.Please add category"
+                    message:"No Titles Available.Please add Titles"
                 })
             }
             else{
@@ -51,16 +49,16 @@ const profileController = {
             }
         })
         .catch((err) => {
-            console.log("Error while updating category in user's profile " , JSON.stringify(err) )
+            console.log("Error while updating titles in user's profile " , JSON.stringify(err) )
             res.status(401).json({
-                message:"Error while updating category",
+                message:"Error while updating titles in user's profile",
                 error:err
             })
         })
     },
 
     deleteCategoriesPostedByUser:(req,res) => {
-        categorySchema.where({posted_by:req.app.get("data1").user_id}).findOneAndDelete(
+        titleSchema.where({posted_by:req.app.get("data1").user_id}).findOneAndDelete(
             {_id:req.params._id},
             // {
             //     Title:req.body.Title,
@@ -71,7 +69,7 @@ const profileController = {
         .then((data) => {
             if(!data){
                 res.status(403).json({
-                    message:"No Category."
+                    message:"No Titles."
                 })
             }
             else{
@@ -82,9 +80,9 @@ const profileController = {
             }
         })
         .catch((err) => {
-            console.log("Error while deletiing category in user's profile " , JSON.stringify(err) )
+            console.log("Error while deletiing title in user's profile " , JSON.stringify(err) )
             res.status(401).json({
-                message:"Error while deleting category",
+                message:"Error while deleting title in user's profile",
                 error:err
             })
         })

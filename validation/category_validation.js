@@ -6,9 +6,9 @@ const categoryValidation = [
         .isEmpty()
         .withMessage('Category cannot be left empty'),
     body('Title')
-    .not()
-    .isEmpty()
-    .withMessage('Title cannot be left empty'),
+        .not()
+        .isEmpty()
+        .withMessage('Title cannot be left empty'),
     body('Link')
         .not()
         .isEmpty()

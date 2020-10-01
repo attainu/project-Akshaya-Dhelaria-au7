@@ -5,20 +5,7 @@ var categorySchema  = new Schema({
     Category:{
         type:String,
         required:true,
-        // unique:true
-    },
-    Title:{
-        type:String,
-        require:true
-    },
-    Link:{
-        type:String,
-        require:true,
         unique:true
-    },
-    posted_by:{
-        type:Schema.Types.ObjectId,
-        ref:"signup"
     }
 },
     {
