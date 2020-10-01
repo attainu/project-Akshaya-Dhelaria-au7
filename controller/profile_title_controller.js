@@ -1,8 +1,9 @@
 const titleSchema = require('../model/title_schema')
 
+
 const profileController = {
     
-    findCategoriesOfUser : (req,res) => {
+    findTitleOfUser : (req,res) => {
         titleSchema.find({posted_by:req.app.get("data1").user_id},(err,result) => {
             if(err){
                 console.log("Error while getting user's link" , JSON.stringify(err))
@@ -25,7 +26,7 @@ const profileController = {
         })
     },
 
-    updateCategoriesPostedByUser:(req,res) => {
+    updateTitlePostedByUser:(req,res) => {
         titleSchema.where({posted_by:req.app.get("data1").user_id}).findOneAndUpdate(
             {_id:req.params._id},
             {
@@ -57,7 +58,7 @@ const profileController = {
         })
     },
 
-    deleteCategoriesPostedByUser:(req,res) => {
+    deleteTitlePostedByUser:(req,res) => {
         titleSchema.where({posted_by:req.app.get("data1").user_id}).findOneAndDelete(
             {_id:req.params._id},
             // {

@@ -3,7 +3,7 @@ const categorySchema = require('../model/category_schema')
 const controller = {
     createCategory: async (req,res) => {
         let eachCategory = new categorySchema({
-            ...req.body,
+            Category:req.body.Category,
             posted_by:req.app.get("data1").user_id
         })
         await eachCategory.save()

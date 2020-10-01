@@ -6,6 +6,10 @@ var categorySchema  = new Schema({
         type:String,
         required:true,
         unique:true
+    },
+    posted_by:{
+        type:Schema.Types.ObjectId,
+        ref:'signup'
     }
 },
     {
