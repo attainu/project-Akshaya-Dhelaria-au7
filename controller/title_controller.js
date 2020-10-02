@@ -25,7 +25,7 @@ const titleController = {
     },
 
     getTitlesOnTheBasisOfCategory: (req,res) => {
-        titleSchema.where({Category:req.params.Category}).find((err,result) => {
+        titleSchema.where({category_id:req.params.category_id}).find((err,result) => {
             if(err){
                 console.log("Error in get link" , JSON.stringify(err))
                 res.status(500).json({

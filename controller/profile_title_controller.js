@@ -14,11 +14,11 @@ const profileController = {
             }else{
                 if(result.length == 0){
                     res.status(404).json({
-                        message:"No Categories found"
+                        message:"No Titles found"
                     })
                 }else{
                     res.status(200).json({
-                        message:"List of Categories of the user",
+                        message:"List of Titles of the user",
                         data:result
                     })
                 }
