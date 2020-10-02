@@ -21,18 +21,19 @@ class Category extends Component{
         this.callingCreateApi()
     }
 
-    clickHandler = (category) => {
-        this.props.history.push(`/${category}`)
+    clickHandler = (category_id) => {
+        const {data} = this.state
+        this.props.history.push(`/title/titles/${category_id}`)
     }
 
 	render(){
         const {data} = this.state
 		return(
             data.length == 0 ? <img src={Spinner} alt='Loading...'/> : data.data.map(each => (
-                <div class="container-fluid">
+                <div className="container-fluid">
                     <div className="row">
                         <div className="col-xs-7 col-sm-6 col-lg-8">
-                            <h4 onClick={() => this.clickHandler(each.Category)} className="category">{each.Category}</h4>
+                            <h4 onClick={() => this.clickHandler(each._id)} className="category">{each.Category}</h4>
                         </div>
                     </div>
                 </div>

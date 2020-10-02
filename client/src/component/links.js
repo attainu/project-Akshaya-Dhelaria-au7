@@ -6,14 +6,11 @@ import Spinner from './loader.gif'
 class Links extends Component{
 	state={
         data:[],
-        // Category:''
 	}
 
 	callingCreateApi = async () => {
-		await Axios.post(`${Backend_URL}/${this.props.match.params.Category}`,{
-            // Category:this.state.Category
+		await Axios.get(`${Backend_URL}/title/titles/${this.props.match.params.category_id}`,{
         })
-        // .then((data) => console.log("data in category is" , data.data.data))
         .then((data) => this.setState({data:data.data}))
 		.catch((err) => console.log(err.response))
     }
@@ -24,7 +21,7 @@ class Links extends Component{
     
 	render(){
         const {data} = this.state
-        console.log("Data in link is" , data)
+        // console.log("Props in link.js is" , this.props)
 		return(
             data.length == 0 ? <img src={Spinner} alt='Loading...'/> : data.data.map(each => (
                 <div>

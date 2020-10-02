@@ -29,6 +29,9 @@ class Login extends Component{
 
     submitHandler = (event) => {
         this.callingLoginApi()
+        // setTimeout(() => {
+        //     this.props.history.push('/')
+        // },7000)
         this.props.history.push('/')
         event.preventDefault()
     }

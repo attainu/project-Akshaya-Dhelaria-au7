@@ -1,13 +1,12 @@
 import React , {Component , Fragment} from 'react';
 import Axios from 'axios';
-import Backend_URL from '../deployed/backend.js'
+import Backend_URL from '../../deployed/backend.js'
 import { Link } from 'react-router-dom';
+import CreateTitle from '../createLinks.js';
 
 class CreateCategory extends Component{
 	state={
-		Category:'',
-		Title:'',
-		Link:''
+		Category:''
 	}
 
 	callingCreateApi = async () => {
@@ -17,14 +16,12 @@ class CreateCategory extends Component{
 			'authorization': token
 		}
 		await Axios.post(`${Backend_URL}/category`,{
-			Category:this.state.Category,
-			Title:this.state.Title,
-			Link:this.state.Link
+			Category:this.state.Category
 		},{
 			headers:setHeader
 		})
-		.then((data) => console.log(data))
-		.catch((err) => console.log(err))
+		.then((data) => console.log("Created Category",data))
+		.catch((err) => console.log("Error while creating category",err))
 	}
 
 	changeHandler = (event) => {
@@ -36,17 +33,14 @@ class CreateCategory extends Component{
 
 	submitHandler = (event) => {
 		this.callingCreateApi()
-		// setTimeout(() => {
-			
-		// },4000)
-		this.props.history.push('/')
-		// console.log("Create Category")
+		setTimeout(() => {
+			this.props.history.push('/')
+		},4000)
 		event.preventDefault()
-		
 	}
 
 	render(){
-		const {Category,Title,Link} = this.state
+		const {Category} = this.state
 		const accessToken = localStorage.getItem('access-token')
 		return(
 				<Fragment>
@@ -60,14 +54,6 @@ class CreateCategory extends Component{
 					<br/>
 					<i class="fa fa-th" aria-hidden="true"></i>
 					<input name="Category" type="text" placeholder="Category" value={Category} onChange={this.changeHandler}/>
-					<br/>
-					<br/>
-					<i class="fa fa-list" aria-hidden="true"></i>
-					<input name="Title" type="text" placeholder="Title" value={Title} onChange={this.changeHandler}/>
-					<br />
-					<br />
-					<i className="fa fa-link" aria-hidden="true"></i>
-					<input name="Link" type="text" placeholder="Link" value={Link} onChange={this.changeHandler}/>
 					<br />
 					<br />
 					<button className="btn btn-info" onClick={this.submitHandler} disabled={!accessToken}>Create Category</button>
@@ -76,4 +62,4 @@ class CreateCategory extends Component{
 	}
 }
 
-export default CreateCategory;
+export default CreateCategory;											

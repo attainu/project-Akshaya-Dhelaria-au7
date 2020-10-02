@@ -15,7 +15,7 @@ class Profile extends Component{
 			'Content-Type': 'application/json',
 			'authorization': token
 		}
-        await Axios.get(`${Backend_URL}/profile/allcategories`,{
+        await Axios.get(`${Backend_URL}/profile/alltitles`,{
             headers:setHeader
         })
         // .then((data) => console.log("Data in profile ",data))
@@ -39,7 +39,7 @@ class Profile extends Component{
 			'Content-Type': 'application/json',
 			'authorization': token
 		}
-        Axios.delete(`${Backend_URL}/profile/deleting/${id}`,{
+        Axios.delete(`${Backend_URL}/profile/deletetitle/${id}`,{
             headers:setHeader
         })
         .then((data) => console.log("Data in delete" , data))
@@ -50,7 +50,7 @@ class Profile extends Component{
         .catch((err) => console.log("Error in profile is" , err))
         this.callingProfile()
         setTimeout(() => {
-            this.props.history.push(`/profile/allcategories`)
+            this.props.history.push(`/profile/mytutorials`)
         },5000)
         // this.props.history.push(`/profile/allcategories`)
     }
@@ -66,9 +66,9 @@ class Profile extends Component{
                     data.length == 0 ? <img src={Spinner} alt='Loading...'/> :
                     data.data.map(eachCategory => (
                         <div>
-                            <p>{eachCategory.Category}</p>
+                            <br/>
                             <p>{eachCategory.Title}</p>
-                            <a href={eachCategory.Link}>{eachCategory.Link}</a>
+                            <a href={eachCategory.Link} target="_blank">{eachCategory.Link}</a>
                             <br/>
                             <br/>
                             <button className="btn btn-warning" onClick={() => this.updateHandler(eachCategory._id)}>

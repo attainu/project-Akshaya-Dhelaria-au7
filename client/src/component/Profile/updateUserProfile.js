@@ -16,7 +16,7 @@ class UpdateProfile extends Component{
 			'Content-Type': 'application/json',
 			'authorization': token
 		}
-        await Axios.put(`${Backend_URL}/profile/updating/${this.props.match.params._id}`,{
+        await Axios.put(`${Backend_URL}/profile/updatetitle/${this.props.match.params._id}`,{
             Title:this.state.Title,
             Link:this.state.Link
         },{
@@ -37,7 +37,7 @@ class UpdateProfile extends Component{
     submitHandler = (event) => {
 		this.updatingProfile()
 		setTimeout(() => {
-			this.props.history.push('/profile/allcategories')
+			this.props.history.push('/profile/mytutorials')
 		},4000)
 		// console.log("Updated Category")
 		event.preventDefault()
@@ -52,7 +52,7 @@ class UpdateProfile extends Component{
 		const accessToken = localStorage.getItem('access-token')
         return(
             <Fragment>
-                <p>Update your Category Details</p>
+                <p>Update your Post Details</p>
                 <hr/>
                 {
 					localStorage.getItem('access-token') ? <span></span> : 

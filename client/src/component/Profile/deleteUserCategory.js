@@ -11,7 +11,7 @@ class DeleteCategory extends Component{
 			'Content-Type': 'application/json',
 			'authorization': token
 		}
-        await Axios.delete(`${Backend_URL}/profile/deleting/${this.props.match.params._id}`,{
+        await Axios.delete(`${Backend_URL}/profile/deletetitle/${this.props.match.params._id}`,{
             headers:setHeader
         })
         .then((data) => console.log("Category deleted Successfully!!"))
