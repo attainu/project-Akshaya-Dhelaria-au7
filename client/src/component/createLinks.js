@@ -62,6 +62,7 @@ class CreateTitle extends Component{
 	render(){
 		const {Category,Title,Link} = this.state
 		const accessToken = localStorage.getItem('access-token')
+		const validation = Category && Title.length>1 && Link.length>5
 		return(
 				<Fragment>
 				{
@@ -74,7 +75,8 @@ class CreateTitle extends Component{
 					<h3>Create the Tutorial </h3>
 					<br/>
 					<label>Choose the category</label>
-					<select>
+					<select required>
+					<option>Select the Category</option>
 					{
 						Category.length == 0 ? <img src={Spinner} alt='Loading...'/> :
 						Category.data.map(eachCategory => (
@@ -94,7 +96,7 @@ class CreateTitle extends Component{
 					<input name="Link" type="text" placeholder="Link" value={Link} onChange={this.changeHandler}/>
 					<br />
 					<br />
-					<button className="btn btn-info" onClick={this.submitHandler} disabled={!accessToken}>Create Tutorial</button>
+					<button className="btn btn-info" onClick={this.submitHandler} disabled={!validation}>Create Tutorial</button>
 				</Fragment>
 		)
 	}

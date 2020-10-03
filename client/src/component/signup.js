@@ -2,7 +2,6 @@ import React , { Component , Fragment } from 'react';
 import Axios from 'axios';
 import {Link ,Switch,Route} from 'react-router-dom'
 import Backend_URL from '../deployed/backend.js'
-import Login from './login.js'
 
 class Signup extends Component{
     state={
@@ -19,7 +18,6 @@ class Signup extends Component{
             Password:this.state.Password
         })
         .then((data) => console.log("Data is " ,JSON.stringify(data)))
-        // .catch((err) => console.log("Error while retreiving data" , JSON.stringify(err.response.data.error)))
         .catch((err) => this.setState({error: err.response.data.error }))
     }
 
@@ -32,14 +30,28 @@ class Signup extends Component{
 
     submitHandler = (event) => {
         this.callingSignupApi()
-        // this.props.history.push('/verify')
+        const {error} = this.state
+        // console.log()
+        setTimeout(() => {
+            console.log("error in signup" , error)
+            if(error.length>0){
+                this.props.history.push('/signup')
+            }else{
+                this.props.history.push('/verify')
+            }
+        },10000)
+        // if(error.length == 0){
+        //     this.props.history.push('/verify')
+        // }else{
+        //     this.props.history.push('/signup')
+        // }
+        
         event.preventDefault()
     }
 
     render(){
         const {Name,Email,Password,error} = this.state
-        // console.log(error)
-        const enableButton = Name.length>5 && Email.includes('@') && Email.includes('.') && Password.length>5
+        const enableButton = Name.length>5 && Email.includes('@') && Email.includes('.') && Password.length>5 && error.length == 0
         return(
             <form className="form-group" onSubmit={this.submitHandler}>
                 <h3>Welcome to Coding Hunt</h3>

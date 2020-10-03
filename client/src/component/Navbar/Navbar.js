@@ -11,6 +11,7 @@ import Profile from '../Profile/userProfile';
 import Logout from '../logout';
 import UpdateProfile from '../Profile/updateUserProfile'
 import CreateTitle from '../createLinks';
+import Likes from '../likes';
 
 function Navbar(){
     const logoutHandler = () =>{
@@ -87,3 +88,5 @@ function Navbar(){
 }
 
 export default Navbar;
+
+//<Route path="/likes/:title_id"  exact component={Likes} />*/
