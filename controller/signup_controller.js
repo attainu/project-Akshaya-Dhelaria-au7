@@ -11,6 +11,7 @@ const controller = {
             Name:req.body.Name,
             Email:req.body.Email,
             Password:hashedPassword,
+            Email_Verified:false,
             OTP: otp
         })  
         // if(!Name || !Email || !Password){
@@ -64,8 +65,11 @@ const controller = {
                 })
             }
             else{
+                data.Email_Verified = true
+                data.save()
                 res.status(200).json({
-                    message:"Email verified successfully"
+                    message:"Email verified successfully",
+                    data:data
                 })
             }
         })
@@ -89,25 +93,32 @@ const controller = {
                     message:"Please check your email/password"
                 })
             }
-            let checkPassword = bcrypt.compareSync(req.body.Password,data.Password)
-            console.log(req.body.Password,data.Password , checkPassword)
-            if(checkPassword == true){
-                // console.log("JWT", data._id)
-                const token = jwt.sign({
-                    user_id:data._id,
-                    Email:data.Email
-                },"coding" , {
-                    expiresIn:'24hr'
-                })
-                res.status(200).json({
-                    message:"Successfully logged in",
-                    tokenKey:token,
-                    user_id:data._id
-                })
+            else if(data.Email_Verified == true){
+                let checkPassword = bcrypt.compareSync(req.body.Password,data.Password)
+                console.log(req.body.Password,data.Password , checkPassword)
+                if(checkPassword == true){
+                    // console.log("JWT", data._id)
+                    const token = jwt.sign({
+                        user_id:data._id,
+                        Email:data.Email
+                    },"coding" , {
+                        expiresIn:'24hr'
+                    })
+                    res.status(200).json({
+                        message:"Successfully logged in",
+                        tokenKey:token,
+                        user_id:data._id
+                    })
+                }
+                else{
+                    res.status(401).json({
+                        message:"Invalid Password"
+                    })
+                }
             }
             else{
-                res.status(401).json({
-                    message:"Invalid Password"
+                res.status(403).json({
+                    message:"Please verify your email"
                 })
             }
         })

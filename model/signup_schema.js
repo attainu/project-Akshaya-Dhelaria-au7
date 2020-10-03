@@ -19,6 +19,9 @@ const signupSchema = new Schema({
         min:5,
         max:256
     },
+    Email_Verified:{
+        type:Boolean
+    },
     OTP:{type:Number}
 },
     {
