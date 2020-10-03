@@ -1,4 +1,6 @@
 const titleSchema = require('../model/title_schema')
+const likeCommentSchema = require('../model/likes_comments_schema.js')
+const mongoose = require("mongoose")
 
 const titleController = {
     createTitle: async (req,res) => {
@@ -45,6 +47,56 @@ const titleController = {
                     })
                 }
             }
+        })
+    },
+
+    getCompleteDetails:(req,res) => {
+        titleSchema.aggregate([
+            {
+                $match:{
+                    category_id:new mongoose.Types.ObjectId(req.params.category_id)
+                }
+            },
+            {
+                $lookup:{
+                    from : 'likes_and_comments',
+                    localField:'_id',
+                    foreignField:'title_id',
+                    as:'Likes'
+                }
+                // $match:{
+                //     category_id:req.params.category_id
+                // }
+            }
+
+            
+            
+            // {
+            //     $unwind:'$Likes'
+            // },
+            // {$group:{
+            //     _id:'$title_id',
+            //     total_likes:{
+            //         $sum:'$Likes.Like'
+            //     }           
+            // }
+        ],
+        (err, result) => {
+          if (err) {
+            res.json({err:err.message});
+          } 
+          else {
+            if(result.length == 0){
+                res.json({
+                    message:"No title found",
+                    result:result
+                });
+            }else{
+                res.json(result);
+
+            }
+            console.log("Result is "+JSON.stringify(result))
+          }
         })
     }
 }
