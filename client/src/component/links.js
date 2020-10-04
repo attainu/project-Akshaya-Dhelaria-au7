@@ -12,7 +12,7 @@ class Links extends Component{
 	callingCreateApi = async () => {
 		await Axios.get(`${Backend_URL}/title/titles/${this.props.match.params.category_id}`,{
         })
-        .then((data) => this.setState({data:data}))
+        .then((data) => this.setState({data:data.data}))
 		.catch((err) => console.log(err.response))
     }
     
@@ -28,7 +28,7 @@ class Links extends Component{
 			'authorization': token
 		}
 		Axios.post(`${Backend_URL}/likes/${title_id}`,{
-            likes:this.state.likes 
+            likes:this.state.likes
         },{
 			headers:setHeader
         })
@@ -42,12 +42,11 @@ class Links extends Component{
 	render(){
         const {data} = this.state
         // console.log("Props in link.js is" , this.props)
-        // console.log("Data in state" , data)
+        console.log("Data in state" , data)
 		return(
-            data.length == 0 ? <img src={Spinner} alt='Loading...'/> : data.data.map(each => (
+            data.length == 0 ? <img src={Spinner} alt='Loading...'/> : data.map(each => (
                 <div className="title-handler">
                     <a className="link" href={each.Link} target="_blank">{each.Title}</a>
-                    <br/>
                     <br/>
                     <button className="btn btn-primary" onClick={() => this.clickHandler(each._id,each.category_id)}>Likes: {each.Likes.length}</button>
                    

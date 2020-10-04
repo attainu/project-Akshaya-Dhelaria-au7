@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-style: oblique;
 }
 
 code {
@@ -108,4 +109,5 @@ form{
   width: 32%;
   margin-left: .5%;
   margin-right: .5%;
+  font-style: oblique;
 }

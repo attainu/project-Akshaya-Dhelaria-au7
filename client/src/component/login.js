@@ -17,7 +17,10 @@ class Login extends Component{
         .then((data) => {
             localStorage.setItem('access-token' , data.data.tokenKey)
         })
-        .catch((err) => console.log("Error while retreiving data" , JSON.stringify(err.response)))
+        .catch((err) => 
+            // console.log("Error while retreiving data" , JSON.stringify(err.response.data.message)),
+            this.setState({error:err.response.data.message})
+        )
     }
 
     changeHandler = (event) => {
@@ -29,18 +32,29 @@ class Login extends Component{
 
     submitHandler = (event) => {
         this.callingLoginApi()
-        // setTimeout(() => {
-        //     this.props.history.push('/')
-        // },7000)
-        this.props.history.push('/')
+        setTimeout(() => {
+            const {error} = this.state
+            // console.log("error in login" , error)
+            if(error.length>0){
+                this.props.history.push('/login')
+            }else{
+                this.props.history.push('/')
+            }
+        },5000)
+        // console.log("error" , error)
         event.preventDefault()
     }
 
     render(){
-        const {Email,Password} = this.state
-        const enableButton = Email.includes('@') && Email.includes('.') && Password.length>6
+        const {Email,Password,error} = this.state
+        const enableButton = Email.includes('@') && Email.includes('.') && Password.length>6 && error.length == 0
         return(
             <form className="form-group" onSubmit={this.submitHandler}>
+            {
+                error && <div class="alert alert-danger" role="alert" style={{justifyContent:'center'}}>
+                    {error}
+                </div>
+            }
                 <h3>Welcome Back</h3>
                 <br />
                 <i className="fa fa-envelope" /> 
@@ -48,7 +62,6 @@ class Login extends Component{
                 {
                     Email.length === 0 ? <span></span> : Email.length<6 || !Email.includes('@') || !Email.includes('.')  ? <p className="para" style={{color:'red'}}>Email should be valid</p> : <p className="para" style={{color:'green'}}>Perfect</p>
                 }
-                <br />
                 <br />
                 <i className="fa fa-key icon" />
                 <input placeholder="Password" type="password" name="Password" value={Password} onChange={this.changeHandler}/>

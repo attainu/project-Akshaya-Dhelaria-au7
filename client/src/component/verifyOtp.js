@@ -28,7 +28,8 @@ class Verifyotp extends Component{
 
 	otpSubmitHandler = (event) => {
 		this.callingOTPapi()
-		console.log("Submitted OTP")
+		
+		// console.log("Submitted OTP")
 		event.preventDefault()
 	}
 
@@ -38,10 +39,11 @@ class Verifyotp extends Component{
 		return(
 			<div className = "otp">
 				{
-					error ? <div class="alert alert-danger" role="alert" style={{justifyContent:'center'}}>
+					error && <div class="alert alert-danger" role="alert" style={{justifyContent:'center'}}>
 					{error}
-				  </div> : <span></span>
+				  </div> 
 				}
+				<br />
 				<h3>Thank you for signing up with us. </h3>
 				<br />
 				<p className="para">Please check your mail. We have sent OTP.</p>

@@ -12,13 +12,14 @@ class Signup extends Component{
     }
     callingSignupApi = async () => {
         // const {Email_error} = this.state.error
-        const trial = await Axios.post(`${Backend_URL}/users/signup` , {
+        await Axios.post(`${Backend_URL}/users/signup` , {
             Name:this.state.Name,
             Email:this.state.Email,
             Password:this.state.Password
         })
         .then((data) => console.log("Data is " ,JSON.stringify(data)))
         .catch((err) => this.setState({error: err.response.data.error }))
+        // .catch((err) => console.log(err.response))
     }
 
     changeHandler = (event) => {
@@ -30,16 +31,18 @@ class Signup extends Component{
 
     submitHandler = (event) => {
         this.callingSignupApi()
-        const {error} = this.state
+
+        // this.callingSignupApi()
         // console.log()
         setTimeout(() => {
+            const {error} = this.state
             console.log("error in signup" , error)
             if(error.length>0){
                 this.props.history.push('/signup')
             }else{
                 this.props.history.push('/verify')
             }
-        },10000)
+        },5000)
         // if(error.length == 0){
         //     this.props.history.push('/verify')
         // }else{
@@ -62,14 +65,14 @@ class Signup extends Component{
                 {
                    Name.length === 0 ? <span></span> : Name.length<6 && Name.length>0 ? <p className="para" style={{color:'red'}}>Name should be more than 5 characters</p>: <p className="para" style={{color:'green'}}>Perfect</p>
                 }
-                <br />
+                
                 <br />
                 <i className="fa fa-envelope" /> 
                 <input name="Email" type="email" placeholder="Email" value={Email} onChange={this.changeHandler}/>
                 {
                     Email.length === 0 ? <span></span> : Email.length<6 || !Email.includes('@') || !Email.includes('.')  ? <p className="para" style={{color:'red'}}>Email should be valid</p> : error.length>0 ? <p className="para" style={{color:'red'}}>{error}</p> :<p style={{color:'green'}}>Perfect</p>
                 }
-                <br />
+               
                 <br />
                 <i className="fa fa-key icon" />
                 <input placeholder="Password" type="password" name="Password" value={Password} onChange={this.changeHandler}/>
@@ -80,7 +83,7 @@ class Signup extends Component{
                 <br />
                 <button className="btn btn-info" disabled={!enableButton}>Create Account</button>
                 <br />
-                <p className="para">Already have account?<Link to='/login'>Login</Link><Switch><Route path='/login' exact /></Switch></p>
+                <p className="para">Already have an account?<Link to='/login'>Login</Link><Switch><Route path='/login' exact /></Switch></p>
             </form>
         )
     }

@@ -13,10 +13,20 @@ import UpdateProfile from '../Profile/updateUserProfile'
 import CreateTitle from '../createLinks';
 import Likes from '../likes';
 
-function Navbar(){
-    const logoutHandler = () =>{
-        localStorage.removeItem('access-token')
+class Navbar extends Component{
+    state={
+        accessToken:''
     }
+
+    logoutHandler = () =>{
+        const removeToken = localStorage.removeItem('access-token')
+        // this.setState({
+
+        // })
+    }
+
+    render(){
+        const getState = localStorage.getItem('access-token')
         return(
             <Fragment>
                 <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -27,19 +37,7 @@ function Navbar(){
                             </Link>
                         </li>
                         {
-                            !localStorage.getItem('access-token') ?
-                            <Fragment>
-                                <li className="nav-item active">
-                                    <Link to='/signup'>
-                                    <button className="button-nav">Signup</button>
-                                    </Link>
-                                </li>
-                                <li className="nav-item active">
-                                    <Link to='/login'>
-                                    <button className="button-nav">Login</button>
-                                    </Link>
-                                </li>
-                            </Fragment> :
+                            localStorage.getItem('access-token') ? 
                             <Fragment>
                                 <li className="nav-item active">
                                     <i className="fa fa-plus"></i>
@@ -64,10 +62,50 @@ function Navbar(){
                                 </li>
                                 <li className="nav-item active">
                                     <Link to='/login'>
-                                    <button onClick={logoutHandler} className="button-nav">Logout</button>
+                                    <button onClick={this.logoutHandler} className="button-nav">Logout</button>
+                                    </Link>
+                                </li>
+                            </Fragment> : 
+                            <Fragment>
+                                <li className="nav-item active">
+                                    <Link to='/signup'>
+                                    <button className="button-nav">Signup</button>
+                                    </Link>
+                                </li>
+                                <li className="nav-item active">
+                                    <Link to='/login'>
+                                    <button className="button-nav">Login</button>
                                     </Link>
                                 </li>
                             </Fragment>
+                            // <Fragment>
+                            //     <li className="nav-item active">
+                            //         <i className="fa fa-plus"></i>
+                            //         <Link to='/createcategory'>
+                            //         <button className="button-nav">Create Category</button>
+                            //         </Link>
+                            //     </li>
+                            //     <li className="nav-item active">
+                            //         <i className="fa fa-plus"></i>
+                            //         <Link to='/title/createtitle'>
+                            //         <button className="button-nav">Create Tutorial</button>
+                            //         </Link>
+                            //     </li>
+                            //     <li className="nav-item active">
+                            //         <Link to='/'>
+                            //         </Link>
+                            //     </li>
+                            //     <li className="nav-item active">
+                            //         <Link to='/profile/mytutorials'>
+                            //         <button className="button-nav">Profile</button>
+                            //         </Link>
+                            //     </li>
+                            //     <li className="nav-item active">
+                            //         <Link to='/login'>
+                            //         <button onClick={logoutHandler} className="button-nav">Logout</button>
+                            //         </Link>
+                            //     </li>
+                            // </Fragment>*/
                         }
                     </ul>
                 </nav>
@@ -85,6 +123,7 @@ function Navbar(){
                     </Switch>
             </Fragment>
         )
+    }                    
 }
 
 export default Navbar;

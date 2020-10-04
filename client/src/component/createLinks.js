@@ -53,14 +53,16 @@ class CreateTitle extends Component{
 		
 	}
 
-	storeCategory = (category_id) => {
+	storeCategory = (event) => {
+		console.log(event.target.value)
 		this.setState({
-			category_id:category_id
+			category_id:event.target.value
 		})
 	}
 
 	render(){
-		const {Category,Title,Link} = this.state
+		const {Category,Title,Link,category_id} = this.state
+		// console.log(category_id)
 		const accessToken = localStorage.getItem('access-token')
 		const validation = Category && Title.length>1 && Link.length>5
 		return(
@@ -74,12 +76,13 @@ class CreateTitle extends Component{
                     <br/>
 					<h3>Create the Tutorial </h3>
 					<br/>
-					<label>Choose the category</label>
-					<select required>
+					<h4>Choose the category</h4>
+					<select onChange={this.storeCategory} required>
 					<option>Select the Category</option>
 					{
 						Category.length == 0 ? <img src={Spinner} alt='Loading...'/> :
 						Category.data.map(eachCategory => (
+							
 							<Fragment>
 								<option value={eachCategory._id} onClick={() => this.storeCategory(eachCategory._id)}>{eachCategory.Category}</option>
 							</Fragment>
