@@ -1,4 +1,4 @@
-import React , {Component} from 'react';
+import React , {Component, Fragment} from 'react';
 import Axios from 'axios';
 import Backend_URL from '../deployed/backend.js'
 import Spinner from './loader.gif'
@@ -22,42 +22,33 @@ class Links extends Component{
     }
     
     clickHandler = (title_id,category_id,index) => {
-        // this.props.history.push(`/likes/${title_id}`,{data:category_id})
         const token = localStorage.getItem("access-token")
 		const setHeader = {
 			'Content-Type': 'application/json',
 			'authorization': token
 		}
 		Axios.post(`${Backend_URL}/likes/${title_id}`,{
-            likes:this.state.likes
+            // likes:this.state.likes
         },{
 			headers:setHeader
-        }).then((data) => console.log(data.data))
-        .then((data) => {
-            var likedPost =  this.state.data[index]; 
-            likedPost.likes.concat(data.data);
-            this.state.data[index] = likedPost;  
         })
-
-        //this.state.data -> array -> post -> likes[] -> append
-        // .then((data) => 
-        //     /*this.props.history.push(`/title/titles/${category_id}`*/
-        //     this.setState({likes:this.state.likes+1})
-        // )
-        // .then((data) => this.setState({likes:data}))
+        .then((data) => {
+            console.log(data.data.message)
+            var previousData = this.state.data;
+            var likedPost =  previousData[index];
+            likedPost.Likes.push(data.data.data.Like);
+            previousData[index] = likedPost;
+            this.setState({data: previousData,message:data.data.message})  
+        })
 		.catch((err) => this.setState({error:err.response}))
     }
 
-    // componentDidUpdate(){
-    //     setTimeout(() =>this.setState({error:''}),3000)
-    // }
-
 	render(){
         const {data,error,message} = this.state
-        // console.log("Props in link.js is" , this.props)
-        console.log("Data in state" , data)
+        console.log(message)
 		return(
-            data.length === 0 ? <img src={Spinner} alt='Loading...'/> : data.map((each,index) => (
+            <Fragment>
+            {data.length === 0 ? <img src={Spinner} alt='Loading...'/> : data.map((each,index) => (
                 <div className="title-handler">
                     <a className="link" href={each.Link} target="_blank">{each.Title}</a>
                     <br/>
@@ -66,8 +57,12 @@ class Links extends Component{
                     {
                         message.length > 0 && <div class="alert alert-info" role="alert" style={{justifyContent:'center'}}>{message}</div> 
                     } 
+                    {/*
+                        !localStorage.getItem('access-token') && <p>Please login to like the post</p>
+                    */}
                 </div>
-            ))
+            ))}
+            </Fragment>
 		)
 	}
 }

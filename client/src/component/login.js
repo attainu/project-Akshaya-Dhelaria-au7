@@ -48,12 +48,13 @@ class Login extends Component{
 
     render(){
         const {Email,Password,error} = this.state
+        console.log(error)
         const enableButton = Email.includes('@') && Email.includes('.') && Password.length>6 && error.length === 0
         return(
             <form className="form-group" onSubmit={this.submitHandler}>
             {
                 error && <div class="alert alert-danger" role="alert" style={{justifyContent:'center'}}>
-                    {error},<p>To verify <Link to='/verify'>click here </Link><Switch><Route path='/verify' exact component={Verifyotp}></Route></Switch></p>
+                    {error}
                 </div>
             }
                 <h3>Welcome Back</h3>

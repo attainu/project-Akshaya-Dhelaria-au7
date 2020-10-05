@@ -6,7 +6,15 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-style: oblique;
+  background-image: url('background.gif');
+  background-size: 100vw 100vh                                                                                                                                                                                                                               ;
+  /* background-repeat: no-repeat; */
+  /* filter:opacity(1000px) */
 }
+/* 
+body{
+
+} */
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',

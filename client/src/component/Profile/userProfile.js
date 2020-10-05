@@ -33,26 +33,21 @@ class Profile extends Component{
         this.props.history.push(`/profile/updating/${id}`,{data:data})
     }
 
-    deleteHandler = (id) => {
+    deleteHandler = async (id) => {
         const token = localStorage.getItem("access-token")
 		const setHeader = {
 			'Content-Type': 'application/json',
 			'authorization': token
 		}
-        Axios.delete(`${Backend_URL}/profile/deletetitle/${id}`,{
+        await Axios.delete(`${Backend_URL}/profile/deletetitle/${id}`,{
             headers:setHeader
         })
-        .then((data) => console.log("Data in delete" , data))
-        // .then((data) => this.setState({data:this.state.data.filter(data => {
-        //     return data._id !== id 
-        // })}))
-        // .then((data) => this.setState({data:data.data}))
+        .then((data) => console.log("Data in delete" , data),this.callingProfile())
         .catch((err) => console.log("Error in profile is" , err))
-        this.callingProfile()
+        // this.callingProfile()
         setTimeout(() => {
             this.props.history.push(`/profile/mytutorials`)
         },5000)
-        // this.props.history.push(`/profile/allcategories`)
     }
 
     render(){

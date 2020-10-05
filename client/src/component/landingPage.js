@@ -59,7 +59,7 @@ class Category extends Component{
 		return(
             <Fragment>
             <input type="search" placeholder="Search for the Programming Language: Python, Javascript" name="Category" value={Category} onChange={this.searchStateHandler} style={{'width':'50vw'}} />
-            <input type="submit" onClick={this.searchHandler} />
+            <input type="submit" className="btn btn-info" onClick={this.searchHandler} />
             <br/>
             {
                 error.length > 0 && <p style={{'color':'red'}}>{error}</p>

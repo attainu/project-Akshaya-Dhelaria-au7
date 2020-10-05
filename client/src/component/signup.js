@@ -1,7 +1,7 @@
 import React , { Component } from 'react';
-import Axios from 'axios';
 import {Link ,Switch,Route} from 'react-router-dom'
-import Backend_URL from '../deployed/backend.js'
+import {connect} from 'react-redux'
+import {fetchData} from '../redux_store/action/signup_action'
 
 class Signup extends Component{
     state={
@@ -9,17 +9,6 @@ class Signup extends Component{
         Email:'',
         Password:'',
         error:''
-    }
-    callingSignupApi = async () => {
-        // const {Email_error} = this.state.error
-        await Axios.post(`${Backend_URL}/users/signup` , {
-            Name:this.state.Name,
-            Email:this.state.Email,
-            Password:this.state.Password
-        })
-        .then((data) => console.log("Data is " ,JSON.stringify(data)))
-        .catch((err) => this.setState({error: err.response.data.error }))
-        // .catch((err) => console.log(err.response))
     }
 
     changeHandler = (event) => {
@@ -30,12 +19,9 @@ class Signup extends Component{
     }
 
     submitHandler = (event) => {
-        this.callingSignupApi()
-
-        // this.callingSignupApi()
-        // console.log()
+        this.props.fetchData(this.state)
         setTimeout(() => {
-            const {error} = this.state
+            const {error} = this.props.state
             console.log("error in signup" , error)
             if(error.length>0){
                 this.props.history.push('/signup')
@@ -43,23 +29,18 @@ class Signup extends Component{
                 this.props.history.push('/verify')
             }
         },5000)
-        // if(error.length == 0){
-        //     this.props.history.push('/verify')
-        // }else{
-        //     this.props.history.push('/signup')
-        // }
-        
         event.preventDefault()
     }
 
     render(){
-        const {Name,Email,Password,error} = this.state
+        const {Name,Email,Password} = this.state
+        const {error} = this.props.state
         const enableButton = Name.length>5 && Email.includes('@') && Email.includes('.') && Password.length>5 && error.length === 0
         return(
             <form className="form-group" onSubmit={this.submitHandler}>
                 <h3>Welcome to Coding Hunt</h3>
                 <p className="para">Signup to submit tutorials and more.</p>
-                <hr/>
+                <hr />
                 <i className="fa fa-user icon" />
                 <input name="Name" type="text" placeholder="Full Name" value={Name} onChange={this.changeHandler} />
                 {
@@ -89,4 +70,17 @@ class Signup extends Component{
     }
 }
 
-export default Signup;
+const mapToProps = (state) => {
+    console.log(state)
+    return{
+        state 
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        fetchData: (userData) => dispatch(fetchData(userData)) 
+    }
+}
+
+export default connect(mapToProps , mapDispatchToProps)(Signup);
