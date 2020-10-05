@@ -61,9 +61,9 @@ class CreateTitle extends Component{
 	}
 
 	render(){
-		const {Category,Title,Link,category_id} = this.state
+		const {Category,Title,Link} = this.state
 		// console.log(category_id)
-		const accessToken = localStorage.getItem('access-token')
+		// const accessToken = localStorage.getItem('access-token')
 		const validation = Category && Title.length>1 && Link.length>5
 		return(
 				<Fragment>
@@ -80,7 +80,7 @@ class CreateTitle extends Component{
 					<select onChange={this.storeCategory} required>
 					<option>Select the Category</option>
 					{
-						Category.length == 0 ? <img src={Spinner} alt='Loading...'/> :
+						Category.length === 0 ? <img src={Spinner} alt='Loading...'/> :
 						Category.data.map(eachCategory => (
 							
 							<Fragment>

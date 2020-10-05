@@ -18,11 +18,18 @@ const titleController = {
             })
         })
         .catch((err) => {
-            console.log("Error while creating title " , JSON.stringify(err) )
-            res.status(401).json({
-                message:"Error while creating title",
+            if(err.name == "MongoError" && err.code == 11000){
+                res.json({
+                    message:"Link Already Exists!!"
+                })
+            }
+            // console.log("Error while creating category " , JSON.stringify(err) )
+            else {
+                res.status(401).json({
+                message:"Error while creating category",
                 error:err
-            })
+                })
+            }
         })
     },
 

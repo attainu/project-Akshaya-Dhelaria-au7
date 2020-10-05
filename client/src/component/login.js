@@ -1,6 +1,8 @@
-import React , { Component , Fragment } from 'react';
+import React , { Component } from 'react';
 import Axios from 'axios';
 import Backend_URL from '../deployed/backend.js'
+import {Link, Route, Switch} from 'react-router-dom'
+import Verifyotp from './verifyOtp.js';
 
 class Login extends Component{
     state={
@@ -40,19 +42,18 @@ class Login extends Component{
             }else{
                 this.props.history.push('/')
             }
-        },5000)
-        // console.log("error" , error)
+        },3000)
         event.preventDefault()
     }
 
     render(){
         const {Email,Password,error} = this.state
-        const enableButton = Email.includes('@') && Email.includes('.') && Password.length>6 && error.length == 0
+        const enableButton = Email.includes('@') && Email.includes('.') && Password.length>6 && error.length === 0
         return(
             <form className="form-group" onSubmit={this.submitHandler}>
             {
                 error && <div class="alert alert-danger" role="alert" style={{justifyContent:'center'}}>
-                    {error}
+                    {error},<p>To verify <Link to='/verify'>click here </Link><Switch><Route path='/verify' exact component={Verifyotp}></Route></Switch></p>
                 </div>
             }
                 <h3>Welcome Back</h3>

@@ -25,9 +25,10 @@ const likesCommentsController = {
                     })
                 }else{
                     newlike.save()
+                    console.log(newlike)
                     res.json({
                         message:"Liked successfully",
-                        data:data
+                        data:newlike
                     })
                 }
             }

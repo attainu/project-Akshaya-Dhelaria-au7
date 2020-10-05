@@ -1,7 +1,7 @@
 import React,{Component,Fragment} from 'react';
 import Axios from 'axios';
 import Backend_URL from '../../deployed/backend'
-import Spinner from '../loader.gif'
+// import Spinner from '../loader.gif'
 
 class UpdateProfile extends Component{
     state={

@@ -1,4 +1,4 @@
-import React , {Component , Fragment} from 'react';
+import React  from 'react';
 import Axios from 'axios';
 import Backend_URL from '../deployed/backend.js'
 

@@ -1,4 +1,4 @@
-import React , { Component , Fragment } from 'react';
+import React , { Component } from 'react';
 import Axios from 'axios';
 import {Link ,Switch,Route} from 'react-router-dom'
 import Backend_URL from '../deployed/backend.js'
@@ -54,7 +54,7 @@ class Signup extends Component{
 
     render(){
         const {Name,Email,Password,error} = this.state
-        const enableButton = Name.length>5 && Email.includes('@') && Email.includes('.') && Password.length>5 && error.length == 0
+        const enableButton = Name.length>5 && Email.includes('@') && Email.includes('.') && Password.length>5 && error.length === 0
         return(
             <form className="form-group" onSubmit={this.submitHandler}>
                 <h3>Welcome to Coding Hunt</h3>

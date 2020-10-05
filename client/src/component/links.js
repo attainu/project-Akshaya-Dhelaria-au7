@@ -6,7 +6,8 @@ import Spinner from './loader.gif'
 class Links extends Component{
 	state={
         data:[],
-        likes:''
+        message:'',
+        error:''
 	}
 
 	callingCreateApi = async () => {
@@ -20,7 +21,7 @@ class Links extends Component{
         this.callingCreateApi()
     }
     
-    clickHandler = (title_id,category_id) => {
+    clickHandler = (title_id,category_id,index) => {
         // this.props.history.push(`/likes/${title_id}`,{data:category_id})
         const token = localStorage.getItem("access-token")
 		const setHeader = {
@@ -31,25 +32,40 @@ class Links extends Component{
             likes:this.state.likes
         },{
 			headers:setHeader
+        }).then((data) => console.log(data.data))
+        .then((data) => {
+            var likedPost =  this.state.data[index]; 
+            likedPost.likes.concat(data.data);
+            this.state.data[index] = likedPost;  
         })
-        .then((data) => 
-            this.props.history.push(`/title/titles/${category_id}`)
-        )
+
+        //this.state.data -> array -> post -> likes[] -> append
+        // .then((data) => 
+        //     /*this.props.history.push(`/title/titles/${category_id}`*/
+        //     this.setState({likes:this.state.likes+1})
+        // )
         // .then((data) => this.setState({likes:data}))
-		.catch((err) => console.log(err.response))
+		.catch((err) => this.setState({error:err.response}))
     }
 
+    // componentDidUpdate(){
+    //     setTimeout(() =>this.setState({error:''}),3000)
+    // }
+
 	render(){
-        const {data} = this.state
+        const {data,error,message} = this.state
         // console.log("Props in link.js is" , this.props)
         console.log("Data in state" , data)
 		return(
-            data.length == 0 ? <img src={Spinner} alt='Loading...'/> : data.map(each => (
+            data.length === 0 ? <img src={Spinner} alt='Loading...'/> : data.map((each,index) => (
                 <div className="title-handler">
                     <a className="link" href={each.Link} target="_blank">{each.Title}</a>
                     <br/>
-                    <button className="btn btn-primary" onClick={() => this.clickHandler(each._id,each.category_id)}>Likes: {each.Likes.length}</button>
-                   
+                    <button className="btn btn-primary" onClick={() => this.clickHandler(each._id,each.category_id,index)}>Likes: {each.Likes.length}</button>
+                    <br />
+                    {
+                        message.length > 0 && <div class="alert alert-info" role="alert" style={{justifyContent:'center'}}>{message}</div> 
+                    } 
                 </div>
             ))
 		)

@@ -1,12 +1,13 @@
 import React , {Component , Fragment} from 'react';
 import Axios from 'axios';
 import Backend_URL from '../../deployed/backend.js'
-import { Link } from 'react-router-dom';
-import CreateTitle from '../createLinks.js';
+// import { Link } from 'react-router-dom';
+// import CreateTitle from '../createLinks.js';
 
 class CreateCategory extends Component{
 	state={
-		Category:''
+		Category:'',
+		data:''
 	}
 
 	callingCreateApi = async () => {
@@ -20,8 +21,8 @@ class CreateCategory extends Component{
 		},{
 			headers:setHeader
 		})
-		.then((data) => console.log("Created Category",data))
-		.catch((err) => console.log("Error while creating category",err))
+		.then((data) => this.setState({data:data.data.message}))
+		.catch((err) => console.log("Error while creating category",err.response.data.message))
 	}
 
 	changeHandler = (event) => {
@@ -34,13 +35,18 @@ class CreateCategory extends Component{
 	submitHandler = (event) => {
 		this.callingCreateApi()
 		setTimeout(() => {
+			const {data} = this.state
+			if(data.length > 1){
+				this.props.history.push('/createcategory')
+			}
 			this.props.history.push('/')
 		},4000)
 		event.preventDefault()
 	}
 
 	render(){
-		const {Category} = this.state
+		const {Category,data} = this.state
+		console.log("Render",data)
 		const accessToken = localStorage.getItem('access-token')
 		return(
 				<Fragment>
@@ -52,7 +58,7 @@ class CreateCategory extends Component{
 				}
 					<h3>Create the Category </h3>
 					<br/>
-					<i class="fa fa-th" aria-hidden="true"></i>
+					<i className="fa fa-th" aria-hidden="true"></i>
 					<input name="Category" type="text" placeholder="Category" value={Category} onChange={this.changeHandler}/>
 					<br />
 					<br />

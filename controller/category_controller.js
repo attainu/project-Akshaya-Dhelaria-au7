@@ -8,18 +8,25 @@ const controller = {
         })
         await eachCategory.save()
         .then((data) => {
-            console.log("Data is" , data)
+            // console.log("Data is" , data)
             res.status(200).json({
                 message:"Category created",
                 data:data
             })
         })
         .catch((err) => {
-            console.log("Error while creating category " , JSON.stringify(err) )
-            res.status(401).json({
+            if(err.name == "MongoError" && err.code == 11000){
+                res.json({
+                    message:"Category Already Exists!!"
+                })
+            }
+            // console.log("Error while creating category " , JSON.stringify(err) )
+            else {
+                res.status(401).json({
                 message:"Error while creating category",
                 error:err
-            })
+                })
+            }
         })
     },
 
@@ -132,6 +139,29 @@ const controller = {
                 message:"Error while deleting category",
                 error:err
             })
+        })
+    },
+
+    searchCategory:(req,res) =>{
+        categorySchema.find({Category:req.body.Category},(err,result) => {
+            if(err){
+                res.status(401).json({
+                    message:"Error while searching the category",
+                    error:err
+                })
+            }
+            else{
+                if(result.length == 0){
+                    res.status(403).json({
+                        message:`No category found with name ${req.body.Category}`
+                    })
+                }else{
+                    res.status(200).json({
+                        message:"Found",
+                        data:result
+                    })
+                }
+            }
         })
     }
 }

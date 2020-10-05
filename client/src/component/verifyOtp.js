@@ -10,7 +10,7 @@ class Verifyotp extends Component{
 	}
 
 	callingOTPapi = async () => {
-		const otpApi = await Axios.post(`${Backend_URL}/users/verifyotp` , {
+		await Axios.post(`${Backend_URL}/users/verifyotp` , {
             OTP: this.state.OTP
 		})
 		// .then((data) => console.log(data))
@@ -40,7 +40,7 @@ class Verifyotp extends Component{
 			<div className = "otp">
 				{
 					error && <div class="alert alert-danger" role="alert" style={{justifyContent:'center'}}>
-					{error}
+					{error} or signup with correct Email ID.
 				  </div> 
 				}
 				<br />

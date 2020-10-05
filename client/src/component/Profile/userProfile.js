@@ -63,7 +63,7 @@ class Profile extends Component{
                 <p className="para">Profile</p>
                 <hr/>
                 {
-                    data.length == 0 ? <img src={Spinner} alt='Loading...'/> :
+                    data.length === 0 ? <img src={Spinner} alt='Loading...'/> :
                     data.data.map(eachCategory => (
                         <div>
                             <br/>
