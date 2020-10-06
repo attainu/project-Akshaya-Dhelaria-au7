@@ -1,3 +1,4 @@
+
 import React , { Component } from 'react';
 import {Link ,Switch,Route} from 'react-router-dom'
 import {connect} from 'react-redux'
@@ -71,9 +72,8 @@ class Signup extends Component{
 }
 
 const mapToProps = (state) => {
-    console.log(state)
     return{
-        state 
+        state : state.userReducer
     }
 }
 

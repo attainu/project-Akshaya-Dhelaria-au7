@@ -1,6 +1,8 @@
 import React , {Component , Fragment} from 'react';
 import Axios from 'axios';
 import Backend_URL from '../../deployed/backend.js'
+import {fetchCreateCategory} from '../../redux_store/action/create_category_action'
+import {connect} from 'react-redux'
 // import { Link } from 'react-router-dom';
 // import CreateTitle from '../createLinks.js';
 
@@ -10,20 +12,20 @@ class CreateCategory extends Component{
 		data:''
 	}
 
-	callingCreateApi = async () => {
-		const token = localStorage.getItem("access-token")
-		const setHeader = {
-			'Content-Type': 'application/json',
-			'authorization': token
-		}
-		await Axios.post(`${Backend_URL}/category`,{
-			Category:this.state.Category
-		},{
-			headers:setHeader
-		})
-		.then((data) => this.setState({data:data.data.message}))
-		.catch((err) => console.log("Error while creating category",err.response.data.message))
-	}
+	// callingCreateApi = async () => {
+	// 	const token = localStorage.getItem("access-token")
+	// 	const setHeader = {
+	// 		'Content-Type': 'application/json',
+	// 		'authorization': token
+	// 	}
+	// 	await Axios.post(`${Backend_URL}/category`,{
+	// 		Category:this.state.Category
+	// 	},{
+	// 		headers:setHeader
+	// 	})
+	// 	.then((data) => this.setState({data:data.data.message}))
+	// 	.catch((err) => console.log("Error while creating category",err.response.data.message))
+	// }
 
 	changeHandler = (event) => {
 		const {name,value} = event.target
@@ -33,7 +35,8 @@ class CreateCategory extends Component{
 	}
 
 	submitHandler = (event) => {
-		this.callingCreateApi()
+		// this.callingCreateApi()
+		this.props.fetchCreateCategory(this.state)
 		setTimeout(() => {
 			const {data} = this.state
 			if(data.length > 1){
@@ -47,7 +50,7 @@ class CreateCategory extends Component{
 	render(){
 		const {Category,data} = this.state
 		console.log("Render",data)
-		const accessToken = localStorage.getItem('access-token')
+		// const accessToken = localStorage.getItem('access-token')
 		return(
 				<Fragment>
 				{
@@ -62,10 +65,22 @@ class CreateCategory extends Component{
 					<input name="Category" type="text" placeholder="Category" value={Category} onChange={this.changeHandler}/>
 					<br />
 					<br />
-					<button className="btn btn-info" onClick={this.submitHandler} disabled={!accessToken}>Create Category</button>
+					<button className="btn btn-info" onClick={this.submitHandler}>Create Category</button>
 				</Fragment>
 		)
 	}
 }
+const mapToProps = (state) => {
+    console.log(state)
+    return{
+        state : state.createCategoryReducer
+    }
+}
 
-export default CreateCategory;											
+const mapDispatchToProps = (dispatch) => {
+    return {
+        fetchCreateCategory: (categoryData) => dispatch(fetchCreateCategory(categoryData)) 
+    }
+}
+
+export default connect(mapToProps,mapDispatchToProps)(CreateCategory);

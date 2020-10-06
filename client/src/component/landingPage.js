@@ -2,6 +2,8 @@ import React , {Component,Fragment} from 'react';
 import Axios from 'axios';
 import Backend_URL from '../deployed/backend.js'
 import Spinner from './loader.gif'
+import {connect} from 'react-redux'
+import {fetchData} from './../redux_store/action/category_action'
 
 class Category extends Component{
 	state={
@@ -10,15 +12,6 @@ class Category extends Component{
         searchData:'',
         error:''
 	}
-
-	callingCreateApi = async () => {
-        // const {data} = this.state
-		await Axios.get(`${Backend_URL}/allcategory`)
-		.then((data) => this.setState({
-            data:data.data
-        }))
-		.catch((err) => console.log(err.response))
-    }
 
     callingSearchApi = async() => {
         await Axios.post(`${Backend_URL}/search`,{
@@ -29,18 +22,15 @@ class Category extends Component{
     }
     
     componentDidMount(){
-        this.callingCreateApi()
-        // this.forceUpdate()
+        this.props.fetchData()
     }
 
     clickHandler = (category_id) => {
-        // const {data} = this.state
         this.props.history.push(`/title/titles/${category_id}`)
     }
 
     searchStateHandler = (event) => {
         const {name,value} = event.target
-        // console.log()
         this.setState({
             [name] : value
         })
@@ -53,8 +43,9 @@ class Category extends Component{
 	render(){
         // this.forceUpdate()
         console.log("Props in landing page" , this.props)
-        const {data,Category,searchData,error} = this.state
-        console.log(error)
+        const {Category,searchData,error} = this.state
+        const {data} = this.props.state
+        // console.log(error)
         const logo = <i className="fa fa-search" />
 		return(
             <Fragment>
@@ -67,7 +58,7 @@ class Category extends Component{
             <br/>
             <br/>
             {
-                data.length === 0 ? <img src={Spinner} alt='Loading...'/> : data.data.map(each => (
+                data.length === 0 ? <img src={Spinner} alt='Loading...'/> :data.map(each => (
                     <div className="container-fluid">
                         <div className="row">
                             <div className="col-xs-7 col-sm-6 col-lg-8">
@@ -82,4 +73,18 @@ class Category extends Component{
 	}
 }
 
-export default Category;
+
+const mapToProps = (state) => {
+    console.log("Landing page state ",state)
+    return{
+        state : state.categoryReducer
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        fetchData: (categoryData) => dispatch(fetchData(categoryData)) 
+    }
+}
+
+export default connect(mapToProps,mapDispatchToProps)(Category);

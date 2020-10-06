@@ -1,28 +1,16 @@
 import React , { Component } from 'react';
-import Axios from 'axios';
-import Backend_URL from '../deployed/backend.js'
-import {Link, Route, Switch} from 'react-router-dom'
-import Verifyotp from './verifyOtp.js';
+// import Axios from 'axios';
+// import Backend_URL from '../deployed/backend.js'
+// import {Link, Route, Switch} from 'react-router-dom'
+// import Verifyotp from './verifyOtp.js';
+import {connect} from 'react-redux'
+import {fetchData} from '../redux_store/action/login_action'
 
 class Login extends Component{
     state={
         Email:'',
         Password:'',
         error:''
-    }
-
-    callingLoginApi = async () => {
-        await Axios.post(`${Backend_URL}/users/login` , {
-            Email:this.state.Email,
-            Password:this.state.Password
-        })
-        .then((data) => {
-            localStorage.setItem('access-token' , data.data.tokenKey)
-        })
-        .catch((err) => 
-            // console.log("Error while retreiving data" , JSON.stringify(err.response.data.message)),
-            this.setState({error:err.response.data.message})
-        )
     }
 
     changeHandler = (event) => {
@@ -33,10 +21,10 @@ class Login extends Component{
     }
 
     submitHandler = (event) => {
-        this.callingLoginApi()
+        this.props.fetchData(this.state)
         setTimeout(() => {
-            const {error} = this.state
-            // console.log("error in login" , error)
+            const {error} = this.props.state
+            console.log("error in login" , error)
             if(error.length>0){
                 this.props.history.push('/login')
             }else{
@@ -47,9 +35,11 @@ class Login extends Component{
     }
 
     render(){
-        const {Email,Password,error} = this.state
+        console.log("props in login" , this.props)
+        const {Email,Password} = this.state
+        const {error} = this.props.state
         console.log(error)
-        const enableButton = Email.includes('@') && Email.includes('.') && Password.length>6 && error.length === 0
+        const enableButton = Email.includes('@') && Email.includes('.') && Password.length>5 && error.length === 0
         return(
             <form className="form-group" onSubmit={this.submitHandler}>
             {
@@ -78,4 +68,16 @@ class Login extends Component{
     }
 }
 
-export default Login;
+const mapStateToProps = (state) => {
+    return{
+        state : state.userReducer
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        fetchData: (userData) => dispatch(fetchData(userData)) 
+    }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(Login);

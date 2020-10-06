@@ -11,6 +11,7 @@ import Profile from '../Profile/userProfile';
 import Logout from '../logout';
 import UpdateProfile from '../Profile/updateUserProfile'
 import CreateTitle from '../createLinks';
+import {connect} from 'react-redux'
 
 class Navbar extends Component{
     state={

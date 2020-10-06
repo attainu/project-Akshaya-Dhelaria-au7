@@ -1,12 +1,16 @@
-import {createStore, applyMiddleware} from 'redux'
-import signupReducer from '../reducer/signup_reducer'
-// import {fetchData} from '../action/signup_action'
+import {createStore, applyMiddleware,combineReducers} from 'redux'
+import reducer from '../reducer/userReducer'
 import thunk from 'redux-thunk'
+import categoryReducer from '../reducer/categoyReducer'
+import createCategoryReducer from '../reducer/create_category_reducer'
+import {composeWithDevTools} from 'redux-devtools-extension'
 
+// const store = createStore(reducer,composeWithDevTools(applyMiddleware(thunk)))
 
-const store = createStore(signupReducer,applyMiddleware(thunk))
-// console.log("initial state ",store.getState())
-
-// dispatch(fetchData())
+const store = createStore(combineReducers({
+    userReducer:reducer,
+    categoryReducer:categoryReducer,
+    createCategory:createCategoryReducer
+}),composeWithDevTools(applyMiddleware(thunk)))
 
 export default store;

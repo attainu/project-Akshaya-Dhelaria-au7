@@ -6,10 +6,13 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-style: oblique;
-  background-image: url('background.gif');
-  background-size: 100vw 100vh                                                                                                                                                                                                                               ;
+  /* background-image: url('background.gif'); */
+  background-size:cover;                                                                                                                                                                                                                               ;
   /* background-repeat: no-repeat; */
-  /* filter:opacity(1000px) */
+  /* filter:blur(1px) */
+  /* -webkit-filter: blur(2px) grayscale(0.8) brightness(0.8); */
+/* -webkit-transform-origin: top left; */
+/* -webkit-transform: scale(5); */
 }
 /* 
 body{
@@ -91,7 +94,7 @@ form{
 }
 
 .category:hover{
-  width: 430px;
+  width: 290px;
   transition: height 1s;
 }
 
