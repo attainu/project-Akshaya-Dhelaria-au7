@@ -1,12 +1,14 @@
 .about-footer{
-    color:white;
+    color:black;
     margin: 100px 100px 100px 100px;
 }
 
 .footer{
-    color: white;
+    color: black;
+    background-color: white;
 }
 
 .about-footer:hover{
-    color: white;
+    color: blue;
+    text-decoration: none;
 }

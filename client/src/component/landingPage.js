@@ -44,6 +44,7 @@ class Category extends Component{
         // this.forceUpdate()
         console.log("Props in landing page" , this.props)
         const {Category,searchData,error} = this.state
+        console.log(searchData)
         const {data} = this.props.state
         // console.log(error)
         const logo = <i className="fa fa-search" />
@@ -53,7 +54,13 @@ class Category extends Component{
             <input type="submit" className="btn btn-info" onClick={this.searchHandler} />
             <br/>
             {
-                error.length > 0 && <p style={{'color':'red'}}>{error}</p>
+                error.length > 0 ? <p style={{'color':'red'}}>{error}</p> : searchData.length === 0 ? <img src={Spinner} alt='Loading...'/> : searchData.data.map(eachCategory => (
+                    <div className="row">
+                        <div className="col-xs-7 col-sm-6 col-lg-8">
+                            <h4 onClick={() => this.clickHandler(eachCategory._id)} className="category">{eachCategory.Category}</h4>
+                        </div>
+                    </div>
+                ))
             }
             <br/>
             <br/>

@@ -2,13 +2,15 @@ import React , {Component , Fragment} from 'react';
 import Axios from 'axios';
 import Backend_URL from '../deployed/backend.js'
 import Spinner from './loader.gif'
+import {connect} from 'react-redux'
 
 class CreateTitle extends Component{
 	state={
 		Category:'',
         Title:'',
 		Link:'',
-		category_id:''
+		category_id:'',
+		data:''
 	}
 
 	callingCreateApi = async () => {
@@ -25,7 +27,7 @@ class CreateTitle extends Component{
 		},{
 			headers:setHeader
 		})
-		.then((data) => console.log("Created Title",data))
+		.then((data) => this.setState({data:data.data.message}))
 		.catch((err) => console.log("Error while creating Title",err.response))
 	}
 
@@ -47,7 +49,14 @@ class CreateTitle extends Component{
 	submitHandler = (event) => {
 		this.callingCreateApi()
 		setTimeout(() => {
-			this.props.history.push('/')
+			const {data} = this.state
+			if(data === "Link Already Exists!!") {
+				console.log("Link exists")
+			}
+			else{
+				this.props.history.push('/')
+			}
+			
 		},4000)
 		event.preventDefault()
 		
@@ -61,7 +70,9 @@ class CreateTitle extends Component{
 	}
 
 	render(){
-		const {Category,Title,Link} = this.state
+		const {Category,Title,Link,data} = this.state
+		console.log("Props in create title" , this.props)
+		console.log("Data is ",data)
 		// console.log(category_id)
 		// const accessToken = localStorage.getItem('access-token')
 		const validation = Category && Title.length>1 && Link.length>5
@@ -99,10 +110,23 @@ class CreateTitle extends Component{
 					<input name="Link" type="text" placeholder="Link" value={Link} onChange={this.changeHandler}/>
 					<br />
 					<br />
+					
+					{
+						data === "Link Already Exists!!" && <div className="alert alert-danger" role="alert" style={{justifyContent:'center','width':'40vw','marginLeft':'220px'}}>
+                    		Link already exists
+                		</div>
+					}
 					<button className="btn btn-info" onClick={this.submitHandler} disabled={!validation}>Create Tutorial</button>
 				</Fragment>
 		)
 	}
 }
 
-export default CreateTitle;
+const mapStateToProps = (state) => {
+	console.log(state)
+	return{
+		state:state.categoryReducer
+	}
+}
+
+export default connect(mapStateToProps)(CreateTitle);

@@ -6,7 +6,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-style: oblique;
-  /* background-image: url('background.gif'); */
   background-size:cover;                                                                                                                                                                                                                               ;
   /* background-repeat: no-repeat; */
   /* filter:blur(1px) */
@@ -121,4 +120,9 @@ form{
   margin-left: .5%;
   margin-right: .5%;
   font-style: oblique;
+}
+
+.form-group{
+  background-image:url('signup.jpg');
+  background-repeat:none;
 }

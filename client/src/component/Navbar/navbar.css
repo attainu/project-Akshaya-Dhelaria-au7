@@ -1,8 +1,10 @@
 nav{
     /* display: flex;
     justify-content: space-evenly; */
-    background-color: #dddddd;
+    background-color: white;
     /* background-color: white; */
+    position: fixed;
+
 }
 
 ul{
@@ -13,20 +15,15 @@ li{
     display: block;
     margin: 0;
     padding: 10px;
-    float: left;
+    float: right;
+    font-weight: 400;
 }
 
 .fa-plus{
 	display: inline;
 	position: relative;
-    color: #42b6f5;
+    color: black;
     padding: 0 0 0 0;
-}
-
-button{
-	border: none;
-    background-color: #dddddd
-    /* background-color: white; */
 }
 
 .logo{
@@ -34,4 +31,13 @@ button{
     height: 5vh;
     margin: auto;
     background-color: #dddddd;
+}
+
+.nav-item:active{
+    padding-right: 0px;
+    margin: 0;
+    color: black !important ;
+    text-decoration: none;
+    /* display: flex; */
+    /* justify-content: center; */
 }

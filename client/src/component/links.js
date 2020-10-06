@@ -40,31 +40,35 @@ class Links extends Component{
             previousData[index] = likedPost;
             this.setState({data: previousData,message:data.data.message})  
         })
-		.catch((err) => this.setState({error:err.response}))
+		.catch((err) => err.response && err.response.data && this.setState({error:err.response.data.message}))
     }
 
 	render(){
         const {data,error,message} = this.state
-        console.log(message)
+        // console.log(message)                                      
 		return(
             <Fragment>
-            {data.length === 0 ? <img src={Spinner} alt='Loading...'/> : data.map((each,index) => (
-                <div className="title-handler">
+            {
+                error.length > 0 && <div class="alert alert-danger" role="alert" style={{'justifyContent':'center','width':'30vw','marginLeft':'20px'}}>
+                    Please login to like the post.
+                  </div> 
+            }
+            {
+                message.length>0 && <div class="alert alert-info" role="alert" style={{justifyContent:'center'}}>{message}</div> 
+            }
+            {data == undefined ? <p>No titles found</p> : data.length === 0 ? <img src={Spinner} alt='Loading...'/> : data.map((each,index) => (
+                <div className="title-handler">                                                                                                                                                                                                                         
                     <a className="link" href={each.Link} target="_blank">{each.Title}</a>
                     <br/>
                     <button className="btn btn-primary" onClick={() => this.clickHandler(each._id,each.category_id,index)}>Likes: {each.Likes.length}</button>
-                    <br />
-                    {
-                        message.length > 0 && <div class="alert alert-info" role="alert" style={{justifyContent:'center'}}>{message}</div> 
-                    } 
-                    {/*
-                        !localStorage.getItem('access-token') && <p>Please login to like the post</p>
-                    */}
+                    <br /> 
                 </div>
             ))}
             </Fragment>
 		)
 	}
-}
+}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
 
 export default Links;
+
+

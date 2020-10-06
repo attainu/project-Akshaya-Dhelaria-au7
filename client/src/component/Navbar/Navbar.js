@@ -28,7 +28,8 @@ class Navbar extends Component{
         // const {} = this.state
         return(
             <Fragment>
-                <nav className="navbar navbar-expand-lg navbar-light bg-light">
+                <nav className="navbar navbar-expand-lg navbar-
+                 bg-light">
                     <ul className="navbar-nav">
                         <li className="nav-item active">
                             <Link to='/'>
@@ -40,41 +41,29 @@ class Navbar extends Component{
                             <Fragment>
                                 <li className="nav-item active">
                                     <i className="fa fa-plus"></i>
-                                    <Link to='/createcategory'>
-                                    <button className="button-nav">Create Category</button>
-                                    </Link>
+                                    <Link to='/createcategory' style={{'textDecoration':'none','color':'black','fontWeight':'550'}}>Create Category</Link>
                                 </li>
                                 <li className="nav-item active">
                                     <i className="fa fa-plus"></i>
-                                    <Link to='/title/createtitle'>
-                                    <button className="button-nav">Create Tutorial</button>
-                                    </Link>
+                                    <Link to='/title/createtitle' style={{'textDecoration':'none','color':'black','fontWeight':'550'}}>Create Tutorial</Link>
                                 </li>
                                 <li className="nav-item active">
                                     <Link to='/'>
                                     </Link>
                                 </li>
                                 <li className="nav-item active">
-                                    <Link to='/profile/mytutorials'>
-                                    <button className="button-nav">Profile</button>
-                                    </Link>
+                                    <Link to='/profile/mytutorials' style={{'textDecoration':'none','color':'black','fontWeight':'550'}}>My Profile</Link>
                                 </li>
                                 <li className="nav-item active">
-                                    <Link to='/login'>
-                                    <button onClick={this.logoutHandler} className="button-nav">Logout</button>
-                                    </Link>
+                                    <Link to='/login' style={{'textDecoration':'none','color':'black','fontWeight':'550'}} onClick={this.logoutHandler}>Logout</Link>
                                 </li>
                             </Fragment> : 
                             <Fragment>
                                 <li className="nav-item active">
-                                    <Link to='/signup'>
-                                    <button className="button-nav">Signup</button>
-                                    </Link>
+                                    <Link to='/signup' style={{'textDecoration':'none','color':'black','fontWeight':'550'}}>Signup</Link>
                                 </li>
                                 <li className="nav-item active">
-                                    <Link to='/login'>
-                                    <button className="button-nav">Login</button>
-                                    </Link>
+                                    <Link to='/login' style={{'textDecoration':'none','color':'black','fontWeight':'550'}}>Login</Link>
                                 </li>
                             </Fragment>
                         }

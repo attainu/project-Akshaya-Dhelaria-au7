@@ -43,7 +43,7 @@ class Login extends Component{
         return(
             <form className="form-group" onSubmit={this.submitHandler}>
             {
-                error && <div class="alert alert-danger" role="alert" style={{justifyContent:'center'}}>
+                error && <div className="alert alert-danger" role="alert" style={{justifyContent:'center'}}>
                     {error}
                 </div>
             }

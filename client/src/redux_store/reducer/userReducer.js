@@ -3,7 +3,11 @@
 // import {login} from '../action/login_action'
 const initialState = {
     data:[],
-    user:{},
+    user:{
+        Name:'',
+        Email:'',
+        Password:'',
+    },
     error:'',
     // category_error:''
 }

@@ -5,7 +5,7 @@ import './footer.css'
 
 function Footer(){
     return(
-        <div>
+        <div className="footer-component">
             <p className="footer">Coding Hunt
                 <i className="fa fa-copyright"></i>
             {

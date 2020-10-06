@@ -14,15 +14,18 @@ class Signup extends Component{
 
     changeHandler = (event) => {
         const {name,value} = event.target
-        this.setState({
+        const {error} = this.props.state
+        console.log(error)
+          this.setState({
             [name]:value
-        })
+        })  
     }
 
     submitHandler = (event) => {
         this.props.fetchData(this.state)
         setTimeout(() => {
             const {error} = this.props.state
+            const {Email} = this.state
             console.log("error in signup" , error)
             if(error.length>0){
                 this.props.history.push('/signup')
@@ -36,11 +39,13 @@ class Signup extends Component{
     render(){
         const {Name,Email,Password} = this.state
         const {error} = this.props.state
-        const enableButton = Name.length>5 && Email.includes('@') && Email.includes('.') && Password.length>5 && error.length === 0
+        const enableButton = Name.length>5 && Email.includes('@') && Email.includes('.') && Password.length>5 
         return(
             <form className="form-group" onSubmit={this.submitHandler}>
-                <h3>Welcome to Coding Hunt</h3>
-                <p className="para">Signup to submit tutorials and more.</p>
+                <div className="welcome">
+                    <h3>Welcome to Coding Hunt</h3>
+                    <p className="para">Signup to submit tutorials and more.</p>
+                </div>
                 <hr />
                 <i className="fa fa-user icon" />
                 <input name="Name" type="text" placeholder="Full Name" value={Name} onChange={this.changeHandler} />
@@ -63,7 +68,7 @@ class Signup extends Component{
                 }
                 <br />
                 <br />
-                <button className="btn btn-info" disabled={!enableButton}>Create Account</button>
+                <button className="btn btn-primary" disabled={!enableButton}>Create Account</button>
                 <br />
                 <p className="para">Already have an account?<Link to='/login'>Login</Link><Switch><Route path='/login' exact /></Switch></p>
             </form>
@@ -72,6 +77,7 @@ class Signup extends Component{
 }
 
 const mapToProps = (state) => {
+    // console.log(state)
     return{
         state : state.userReducer
     }

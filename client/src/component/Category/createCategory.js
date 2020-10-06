@@ -9,7 +9,9 @@ import {connect} from 'react-redux'
 class CreateCategory extends Component{
 	state={
 		Category:'',
-		data:''
+		data:'',
+		exists: false,
+		message:''
 	}
 
 	// callingCreateApi = async () => {
@@ -37,19 +39,27 @@ class CreateCategory extends Component{
 	submitHandler = (event) => {
 		// this.callingCreateApi()
 		this.props.fetchCreateCategory(this.state)
+		const {message} = this.props.state.createCategory.data
 		setTimeout(() => {
 			const {data} = this.state
-			if(data.length > 1){
+			const {message} = this.props.state.createCategory.data
+			this.setState({
+				message:message
+			})
+			if(message == "Category Already Exists!!"){
 				this.props.history.push('/createcategory')
+			}else{
+				this.props.history.push('/')
 			}
-			this.props.history.push('/')
-		},4000)
+		},2000)
 		event.preventDefault()
 	}
 
 	render(){
-		const {Category,data} = this.state
-		console.log("Render",data)
+		const {Category,data,message} = this.state
+		console.log("Render" , message)
+		console.log("Create Category",this.props.state.createCategory.data)
+		// const {message} = this.props.state.createCategory.data
 		// const accessToken = localStorage.getItem('access-token')
 		return(
 				<Fragment>
@@ -61,6 +71,11 @@ class CreateCategory extends Component{
 				}
 					<h3>Create the Category </h3>
 					<br/>
+					{
+						message.length > 0 && <div className="alert alert-danger" role="alert" style={{justifyContent:'center','width':'40vw','marginLeft':'220px'}}>
+                    		{message}
+                		</div>
+					}
 					<i className="fa fa-th" aria-hidden="true"></i>
 					<input name="Category" type="text" placeholder="Category" value={Category} onChange={this.changeHandler}/>
 					<br />
@@ -73,7 +88,7 @@ class CreateCategory extends Component{
 const mapToProps = (state) => {
     console.log(state)
     return{
-        state : state.createCategoryReducer
+        state : state
     }
 }
 

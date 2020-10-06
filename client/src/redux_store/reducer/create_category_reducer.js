@@ -3,7 +3,8 @@
 // import {login} from '../action/login_action'
 const initialState = {
     data:[],
-    error:''
+    error:'',
+    exists:false
 }
 
 const createCategoryReducer = (state = initialState , action) => {
@@ -19,6 +20,7 @@ const createCategoryReducer = (state = initialState , action) => {
     if(type == "CATEGORY_CREATION_ERROR"){
         return {
             ...state,
+            exists:true,
             error: payload
         }
     }

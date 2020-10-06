@@ -1,0 +1,8 @@
+.no-result{
+	filer:blur(10px);
+	width: 70vw;
+	height: 70vh;
+	background-position: center;
+  	background-repeat: no-repeat;
+  	background-size: cover;
+}

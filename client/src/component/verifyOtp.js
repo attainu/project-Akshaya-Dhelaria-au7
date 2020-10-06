@@ -39,7 +39,7 @@ class Verifyotp extends Component{
 		return(
 			<div className = "otp">
 				{
-					error && <div class="alert alert-danger" role="alert" style={{justifyContent:'center'}}>
+					error && <div className="alert alert-danger" role="alert" style={{justifyContent:'center'}}>
 					{error} or signup with correct Email ID.
 				  </div> 
 				}
