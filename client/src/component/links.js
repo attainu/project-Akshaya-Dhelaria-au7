@@ -2,19 +2,21 @@ import React , {Component, Fragment} from 'react';
 import Axios from 'axios';
 import Backend_URL from '../deployed/backend.js'
 import Spinner from './loader.gif'
+import noresults from './Profile/noresults.png'
 
 class Links extends Component{
 	state={
-        data:[],
+        data:[],                                    
         message:'',
-        error:''
+        error:'',
+        error_message:''
 	}
 
 	callingCreateApi = async () => {
 		await Axios.get(`${Backend_URL}/title/titles/${this.props.match.params.category_id}`,{
         })
-        .then((data) => this.setState({data:data.data}))
-		.catch((err) => console.log(err.response))
+        .then((data) => this.setState({data:data.data, error_message:data.data.message}),() => console.log("State changed"))
+        .catch((err) => this.setState({initialized : true}))
     }
     
     componentDidMount(){
@@ -44,24 +46,33 @@ class Links extends Component{
     }
 
 	render(){
-        const {data,error,message} = this.state
-        // console.log(message)                                      
+        const {data,error,message,error_message} = this.state
+        console.log(message,"error message is ",error_message)                                      
 		return(
             <Fragment>
+            <h4>List of Tutorials </h4>
+            <hr />
             {
                 error.length > 0 && <div class="alert alert-danger" role="alert" style={{'justifyContent':'center','width':'30vw','marginLeft':'20px'}}>
                     Please login to like the post.
                   </div> 
             }
             {
-                message.length>0 && <div class="alert alert-info" role="alert" style={{justifyContent:'center'}}>{message}</div> 
-            }
-            {data == undefined ? <p>No titles found</p> : data.length === 0 ? <img src={Spinner} alt='Loading...'/> : data.map((each,index) => (
-                <div className="title-handler">                                                                                                                                                                                                                         
-                    <a className="link" href={each.Link} target="_blank">{each.Title}</a>
-                    <br/>
-                    <button className="btn btn-primary" onClick={() => this.clickHandler(each._id,each.category_id,index)}>Likes: {each.Likes.length}</button>
-                    <br /> 
+
+                data.length === 0 ? <img src={Spinner} alt='Loading...'/> : data.map((each,index) => (
+                <div>
+                    <div className="row">
+                        <div className="col-sm-8">
+                            <div className="title-handler">                                                                                                                                                                                                                         
+                                <a className="link" style={{'textTransform':'uppercase'}} href={each.Link} target="_blank">{each.Title}</a>
+                                <p>({each.Link})</p>
+                                <br/>
+                                <button className="btn btn-primary" onClick={() => this.clickHandler(each._id,each.category_id,index)}>Likes: {each.Likes.length}</button>
+                                <br /> 
+                            </div>
+                        </div>
+                    </div>
+                <hr />
                 </div>
             ))}
             </Fragment>
@@ -71,4 +82,7 @@ class Links extends Component{
 
 export default Links;
 
+//(error_message.length > 0) ? <img style={{'width':'70vw','height':'70vh'}} src={noresults} alt="No Posts Found"/> : 
 
+
+//                (error_message == undefined) ? <img style={{'width':'70vw','height':'70vh'}} src={noresults} alt="No Posts Found"/> : 

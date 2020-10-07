@@ -15,7 +15,7 @@ class CreateTitle extends Component{
 
 	callingCreateApi = async () => {
 		const {category_id} = this.state
-		console.log("ID is" , category_id)
+		// console.log("ID is" , category_id)
 		const token = localStorage.getItem("access-token")
 		const setHeader = {
 			'Content-Type': 'application/json',
@@ -112,7 +112,7 @@ class CreateTitle extends Component{
 					<br />
 					
 					{
-						data === "Link Already Exists!!" && <div className="alert alert-danger" role="alert" style={{justifyContent:'center','width':'40vw','marginLeft':'220px'}}>
+						data === "Link Already Exists!!" && <div className="alert alert-danger" role="alert" style={{justifyContent:'center','width':'30vw','marginLeft':'450px'}}>
                     		Link already exists
                 		</div>
 					}

@@ -95,7 +95,7 @@ const controller = {
             }
             else if(data.Email_Verified == true){
                 let checkPassword = bcrypt.compareSync(req.body.Password,data.Password)
-                console.log(req.body.Password,data.Password , checkPassword)
+                // console.log(req.body.Password,data.Password , checkPassword)
                 if(checkPassword == true){
                     // console.log("JWT", data._id)
                     const token = jwt.sign({
@@ -107,7 +107,8 @@ const controller = {
                     res.status(200).json({
                         message:"Successfully logged in",
                         tokenKey:token,
-                        user_id:data._id
+                        user_id:data._id,
+                        data:data
                     })
                 }
                 else{

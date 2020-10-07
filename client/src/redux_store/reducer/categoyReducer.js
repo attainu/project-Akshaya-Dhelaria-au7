@@ -3,7 +3,9 @@
 // import {login} from '../action/login_action'
 const initialState = {
     data:[],
-    error:''
+    message:'',
+    error:'',
+    error_message:''
 }
 
 const categoryReducer = (state = initialState , action) => {

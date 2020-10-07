@@ -1,8 +1,29 @@
 .no-result{
-	filer:blur(10px);
 	width: 70vw;
 	height: 70vh;
 	background-position: center;
   	background-repeat: no-repeat;
   	background-size: cover;
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 300px;
+  margin: auto;
+  text-align: center;
+  font-family: arial;
+}
+
+.title {
+  color: grey;
+  font-size: 18px;
+}
+
+a{
+  color: black;
+  text-decoration: none;
+}
+
+.titles{
+  color: black;
 }

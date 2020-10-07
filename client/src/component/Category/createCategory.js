@@ -65,14 +65,14 @@ class CreateCategory extends Component{
 				<Fragment>
 				{
 					localStorage.getItem('access-token') ? <span></span> : 
-					<div class="alert alert-danger" role="alert" style={{justifyContent:'center',width:'30vw',marginLeft:'450px'}}>
+					<div class="alert alert-danger" role="alert" style={{justifyContent:'center',width:'30vw',marginLeft:'550px'}}>
 						Log in to create category
 				  	</div>
 				}
 					<h3>Create the Category </h3>
 					<br/>
 					{
-						message.length > 0 && <div className="alert alert-danger" role="alert" style={{justifyContent:'center','width':'40vw','marginLeft':'220px'}}>
+						message.length > 0 && <div className="alert alert-danger" role="alert" style={{justifyContent:'center','width':'30vw','marginLeft':'450px'}}>
                     		{message}
                 		</div>
 					}

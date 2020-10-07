@@ -15,17 +15,35 @@ import {connect} from 'react-redux'
 
 class Navbar extends Component{
     state={
-        accessToken:''
+        accessToken:'',
+        user:{}
     }
 
+    // componentDidMount(){
+    //     const {user} = this.props.state.userReducer
+    //     this.setState({
+    //         user:user
+    //     })
+    // }
+
     logoutHandler = () =>{
-        localStorage.removeItem('access-token')
+        localStorage.clear()
         this.forceUpdate()
+    }
+
+    LoginHandler = () => {
+        const {user} = this.props.state.userReducer
+        this.setState({
+            user:user
+        })
     }
 
     render(){
         // const getState = localStorage.getItem('access-token')
         // const {} = this.state
+        console.log("Nav",this.props)
+        // const {user} = this.props.state.userReducer
+        console.log(this.state.user)
         return(
             <Fragment>
                 <nav className="navbar navbar-expand-lg navbar-
@@ -57,13 +75,14 @@ class Navbar extends Component{
                                 <li className="nav-item active">
                                     <Link to='/login' style={{'textDecoration':'none','color':'black','fontWeight':'550'}} onClick={this.logoutHandler}>Logout</Link>
                                 </li>
+                                <li><Link style={{'textDecoration':'none','color':'black','fontWeight':'550'}}>Welcome {localStorage.getItem('Name')}</Link></li>
                             </Fragment> : 
                             <Fragment>
                                 <li className="nav-item active">
                                     <Link to='/signup' style={{'textDecoration':'none','color':'black','fontWeight':'550'}}>Signup</Link>
                                 </li>
                                 <li className="nav-item active">
-                                    <Link to='/login' style={{'textDecoration':'none','color':'black','fontWeight':'550'}}>Login</Link>
+                                    <Link to='/login' style={{'textDecoration':'none','color':'black','fontWeight':'550'}} onClick={this.LoginHandler}>Login</Link>
                                 </li>
                             </Fragment>
                         }
@@ -86,6 +105,13 @@ class Navbar extends Component{
     }                    
 }
 
-export default Navbar;
+const mapStateToProps = (state) => {
+    console.log("User profile navbar" , state.userReducer)
+    return {
+        state: state
+    }
+}
+
+export default connect(mapStateToProps)(Navbar);
 
 //<Route path="/likes/:title_id"  exact component={Likes} />*/

@@ -68,7 +68,7 @@ class Category extends Component{
                 data.length === 0 ? <img src={Spinner} alt='Loading...'/> :data.map(each => (
                     <div className="container-fluid">
                         <div className="row">
-                            <div className="col-xs-7 col-sm-6 col-lg-8">
+                            <div className="col-sm-8">
                                 <h4 onClick={() => this.clickHandler(each._id)} className="category">{each.Category}</h4>
                             </div>
                         </div>

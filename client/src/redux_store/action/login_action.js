@@ -21,8 +21,10 @@ export const fetchData = (userInfo) => {
         await Axios.post(`${Backend_URL}/users/login` , userInfo )
         .then(response => {
             localStorage.setItem('access-token',response.data.tokenKey)
-            // console.log("Action login ",response.data.tokenKey)
-            dispatch(login(response.data))
+            localStorage.setItem('Name',response.data.data.Name)
+            localStorage.setItem('Email',response.data.data.Email)
+            console.log("Action login ",response.data.data)
+            dispatch(login(response.data.data))
         })
         .catch(error => {
             // console.log("Action error login",error.response.data.message)

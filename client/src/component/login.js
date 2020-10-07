@@ -8,6 +8,7 @@ import {fetchData} from '../redux_store/action/login_action'
 
 class Login extends Component{
     state={
+        user:{},
         Email:'',
         Password:'',
         error:''

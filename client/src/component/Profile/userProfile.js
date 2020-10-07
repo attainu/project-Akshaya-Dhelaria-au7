@@ -4,6 +4,8 @@ import Backend_URL from '../../deployed/backend'
 import Spinner from '../loader.gif'
 import './profile.css'
 import noresult from './noresults.png'
+import {connect} from 'react-redux'
+import ProfilePic from './profile.png'
 
 class Profile extends Component{
     state={
@@ -47,7 +49,7 @@ class Profile extends Component{
         .then((data) => {
             var previousData = this.state.data;
             previousData.data.splice(index,1);
-                                                                                                                                                                                                                                                                                                                                                                                                                                    this.setState({data: previousData})
+            this.setState({data: previousData})
         })
         .catch((err) => console.log("Error in profile is" , err))
         // this.callingProfile()
@@ -59,17 +61,25 @@ class Profile extends Component{
     render(){
         const {data,initialized} = this.state
         console.log("Data in profile is" , data)
+        console.log("Props in profile" , this.props)
         return(
             <Fragment>
-                <p className="para">Profile</p>
+                <div className="card">
+                  <img src={ProfilePic} alt="Profile" style={{"width":"20vw"}} />
+                  <h3>{localStorage.getItem('Name')}</h3>
+                  <p className="title">{localStorage.getItem('Email')}</p>
+                </div>
                 <hr/>
+                <h4>Tutorials you have posted</h4>
                 {
                     (initialized == true && data.length == 0) ? <img className="no-result" src={noresult} alt="No Post Found"/> : data.length === 0 ? <img src={Spinner} alt='Loading...'/> :
                     data.data.map((eachCategory,index) => (
-                        <div>
+                        <div className="container">
+                        <div className="row">
+                        <div className="card col-lg">
                             <br/>
-                            <p>{eachCategory.Title}</p>
-                            <a href={eachCategory.Link} target="_blank">{eachCategory.Link}</a>
+                            <p className="titles">Title : {eachCategory.Title}</p>
+                            <a href={eachCategory.Link} target="_blank">Link : {eachCategory.Link}</a>
                             <br/>
                             <br/>
                             <button className="btn btn-warning" onClick={() => this.updateHandler(eachCategory._id)}>
@@ -85,7 +95,10 @@ class Profile extends Component{
                                     'color':'white',
                                     'width':'50px',
                                     'position':'relative'
-                                }}></i></button>
+                                }}></i>
+                            </button> 
+                        </div>
+                        </div>
                         </div>
                     ))
                 }
@@ -94,4 +107,11 @@ class Profile extends Component{
     }
 } 
 
-export default Profile
+const mapStateToProps = (state) => {
+    console.log("User profile" , state)
+    return {
+        state: state.userReducer
+    }
+}
+
+export default connect(mapStateToProps)(Profile)
