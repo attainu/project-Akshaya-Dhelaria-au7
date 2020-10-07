@@ -47,12 +47,11 @@ class Navbar extends Component{
         return(
             <Fragment>
                 <nav className="navbar navbar-expand-lg navbar-bg-light" style={{'border':'1px solid white','position':'relative','marginTop':'0px','paddingTop':'0px','width':'100%','borderRadius': '1px','boxShadow': '0px 5px 5px 5px rgba(0, 0, 0, 0.1)','zIndex':'99'}}>
-                    <ul className="navbar-nav">
-                        <li className="nav-item active">
-                            <Link to='/'>
+                            <Link className="homeLogo" to='/'>
                             <img className="logo" src='./ch.jpg' alt="Logo" />
                             </Link>
-                        </li>
+           
+                    <ul className="navbar-nav navbarList">
                         {
                             localStorage.getItem('access-token') ? 
                             <Fragment>
@@ -73,7 +72,7 @@ class Navbar extends Component{
                                 <li className="nav-item active">
                                     <Link to='/login' style={{'textDecoration':'none','color':'black','fontWeight':'550'}} onClick={this.logoutHandler}>Logout</Link>
                                 </li>
-                                <li><Link style={{'textDecoration':'none','color':'black','fontWeight':'550'}}>Welcome {localStorage.getItem('Name')}</Link></li>
+                                <li><Link className="welcome-user" style={{'textDecoration':'none','color':'black','fontWeight':'550'}}>Welcome {localStorage.getItem('Name')}</Link></li>
                             </Fragment> : 
                             <Fragment>
                                 <li className="nav-item active">

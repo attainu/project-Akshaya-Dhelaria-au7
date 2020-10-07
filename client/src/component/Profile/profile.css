@@ -39,3 +39,9 @@ a{
   margin-left: 400px;
   margin-top: 50px;
 }
+
+.container:hover{
+  width: 40%;
+  transition: height 1s;
+  /*background-color: teal;*/
+}

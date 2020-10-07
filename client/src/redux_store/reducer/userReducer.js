@@ -14,7 +14,8 @@ const reducer = (state = initialState , action) => {
         // console.log("Payload" , payload)
         return { 
             ...state,
-            user: {...payload}
+            user: {...payload},
+            error:''
         }
     }
     if(type == "USER_SIGNUP_ERROR"){
@@ -26,7 +27,8 @@ const reducer = (state = initialState , action) => {
     if(type == "USER_LOGIN"){
         return {
             ...state,
-            user:{...payload}
+            user:{...payload},
+            error:''
         }
     }
     if(type == "USER_LOGIN_ERROR"){

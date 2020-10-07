@@ -17,15 +17,20 @@ class Login extends Component{
     changeHandler = (event) => {
         const {name,value} = event.target
         this.setState({
-            [name]:value
+            [name]:value,
+            error:''
         })
     }
 
     submitHandler = (event) => {
         this.props.fetchData(this.state)
         setTimeout(() => {
-            const {error} = this.props.state
-            console.log("error in login" , error)
+             const {error} = this.props.state
+             this.setState({
+                 error:error
+             })
+
+            // console.log("error in login" , error)
             if(error.length>0){
                 this.props.history.push('/login')
             }else{
@@ -37,10 +42,10 @@ class Login extends Component{
 
     render(){
         console.log("props in login" , this.props)
-        const {Email,Password} = this.state
-        const {error} = this.props.state
+        const {Email,Password,error} = this.state
+        // const {error} = this.props.state
         console.log(error)
-        const enableButton = Email.includes('@') && Email.includes('.') && Password.length>5 && error.length === 0
+        const enableButton = Email.includes('@') && Email.includes('.') && Password.length>5 
         return(
             <div className="login-div">
             <br />

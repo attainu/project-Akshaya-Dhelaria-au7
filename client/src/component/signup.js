@@ -14,10 +14,9 @@ class Signup extends Component{
 
     changeHandler = (event) => {
         const {name,value} = event.target
-        const {error} = this.props.state
-        console.log(error)
           this.setState({
-            [name]:value
+            [name]:value,
+            error:''
         })  
     }
 
@@ -25,8 +24,11 @@ class Signup extends Component{
         this.props.fetchData(this.state)
         setTimeout(() => {
             const {error} = this.props.state
-            const {Email} = this.state
-            console.log("error in signup" , error)
+            // const {Email} = this.state
+            this.setState({
+                 error:error
+             })
+            console.log("error in signup" , this.state.error)
             if(error.length>0){
                 this.props.history.push('/signup')
             }else{
@@ -37,8 +39,9 @@ class Signup extends Component{
     }
 
     render(){
-        const {Name,Email,Password} = this.state
-        const {error} = this.props.state
+        const {Name,Email,Password,error} = this.state
+        // const {error} = this.props.state
+        console.log(error)
         const enableButton = Name.length>5 && Email.includes('@') && Email.includes('.') && Password.length>5 
         return(
             <div>

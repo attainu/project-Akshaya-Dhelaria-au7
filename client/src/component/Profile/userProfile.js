@@ -71,34 +71,39 @@ class Profile extends Component{
                 </div>
                 <hr/>
                 <h4>Tutorials you have posted</h4>
+                <br />
                 {
                     (initialized == true && data.length == 0) ? <img className="no-result" src={noresult} alt="No Post Found"/> : data.length === 0 ? <img src={Spinner} alt='Loading...'/> :
                     data.data.map((eachCategory,index) => (
                         <div className="container">
-                        <div className="row">
-                        <div className="card col-lg">
-                            <br/>
-                            <p className="titles">Title : {eachCategory.Title}</p>
-                            <a href={eachCategory.Link} target="_blank">Link : {eachCategory.Link}</a>
-                            <br/>
-                            <br/>
-                            <button className="btn btn-warning" onClick={() => this.updateHandler(eachCategory._id)}>
-                                <i className="fa fa-edit" 
-                                style={{
-                                    'color':'white',
-                                    'width':'50px',
-                                    'position':'relative'
-                                }}>
-                                </i>
-                            </button>
-                            <button className="btn btn-danger" onClick={() => this.deleteHandler(eachCategory._id,index)}><i className="fa fa-trash" style={{
-                                    'color':'white',
-                                    'width':'50px',
-                                    'position':'relative'
-                                }}></i>
-                            </button> 
-                        </div>
-                        </div>
+                            <div className="row">
+                                <div className="card col-lg">
+                                    <br/>
+                                    <p className="titles">Title : {eachCategory.Title}</p>
+                                    <a href={eachCategory.Link} target="_blank">Link : {eachCategory.Link}</a>
+                                    <br/>
+                                    <br/>
+                                    <button className="btn btn-warning" onClick={() => this.updateHandler(eachCategory._id)}>
+                                        <i className="fa fa-edit" 
+                                        style={{
+                                            'color':'white',
+                                            'width':'50px',
+                                            'position':'relative'
+                                        }}>
+                                        </i>
+                                    </button>
+                                    <button className="btn btn-danger" onClick={() => this.deleteHandler(eachCategory._id,index)}><i className="fa fa-trash" style={{
+                                            'color':'white',
+                                            'width':'50px',
+                                            'position':'relative'
+                                        }}></i>
+                                    </button> 
+                                    <br />
+                                    <br />
+                                </div>
+                            </div>
+                        <br />
+                        <br />
                         </div>
                     ))
                 }

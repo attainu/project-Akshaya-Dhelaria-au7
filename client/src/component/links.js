@@ -50,6 +50,7 @@ class Links extends Component{
         console.log(message,"error message is ",error_message)                                      
 		return(
             <Fragment>
+            <br />
             <h4>List of Tutorials </h4>
             <hr />
             {
@@ -59,7 +60,7 @@ class Links extends Component{
             }
             {
 
-                data.length === 0 ? <img src={Spinner} alt='Loading...'/> : data.map((each,index) => (
+                error_message && error_message.length > 0 ? <img style={{'width':'70vw','height':'70vh'}} src={noresults} alt="No Posts Found"/> : data.length === 0 ? <img src={Spinner} alt='Loading...'/> : data.map((each,index) => (
                 <div>
                     <div className="row">
                         <div className="col-sm-8">

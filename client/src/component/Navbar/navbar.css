@@ -6,33 +6,39 @@ nav{
     position: fixed;
     padding: 0;
     margin: 0;
-    z-index: -99;
+    height:11vh;
+    /*z-index: -99;*/
 }
 
-ul{
+.homeLogo {
+    float: left;
+}
+
+.navbarList {
+    float: right;
     list-style: none;
+    margin-left: auto;
 }
 
 li{
-    display: block;
+    display: flex;
     margin: 0;
     padding: 10px;
-    float: right;
-    font-weight: 400;
+    margin-left: auto;
 }
 
 .fa-plus{
-	display: inline;
+	display: flex;
 	position: relative;
     color: black;
-    padding: 0 0 0 0;
+    margin:4px;
 }
 
 .logo{
     width: 3vw;
     height: 5vh;
     margin: auto;
-    background-color: #dddddd;
+    background-color: white;
 }
 
 .nav-item:active{
@@ -42,4 +48,20 @@ li{
     text-decoration: none;
     /* display: flex; */
     /* justify-content: center; */
+}
+
+.nav-item:hover{
+    /*padding-right: 0px;*/
+    /*margin: 0;*/    
+    /*border:1px solid black;*/
+    /*border-s*/
+    border-radius: 100px;
+    text-decoration: none;
+    /* display: flex; */
+    /* justify-content: center; */
+}
+
+.welcome-user{
+   display: flex;
+
 }

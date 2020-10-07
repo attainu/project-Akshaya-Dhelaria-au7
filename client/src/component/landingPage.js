@@ -4,20 +4,22 @@ import Backend_URL from '../deployed/backend.js'
 import Spinner from './loader.gif'
 import {connect} from 'react-redux'
 import {fetchData} from './../redux_store/action/category_action'
+import noresults from './Profile/noresults.png'
 
 class Category extends Component{
 	state={
         data:[],
         Category:'',
         searchData:'',
-        error:''
+        error:'',
+        searched : false,
 	}
 
     callingSearchApi = async() => {
         await Axios.post(`${Backend_URL}/search`,{
             Category:this.state.Category
         })
-        .then((data) => this.setState({searchData:data.data}))
+        .then((data) => this.setState({searchData:data.data, searched:true,error:''}))
         .catch((error) => this.setState({error:error.response.data.message}))
     }
     
@@ -43,18 +45,19 @@ class Category extends Component{
 	render(){
         // this.forceUpdate()
         console.log("Props in landing page" , this.props)
-        const {Category,searchData,error} = this.state
-        console.log(searchData)
+        const {Category,searchData,error,searched} = this.state
+        console.log(searched)
         const {data} = this.props.state
-        // console.log(error)
+        // console.log(data)
         const logo = <i className="fa fa-search" />
 		return(
             <Fragment>
+            <br/>
             <input type="search" placeholder="Search for the Programming Language: Python, Javascript" name="Category" value={Category} onChange={this.searchStateHandler} style={{'width':'50vw'}} />
             <input type="submit" className="btn btn-info" onClick={this.searchHandler} />
             <br/>
             {
-                error.length > 0 ? <p style={{'color':'red'}}>{error}</p> : searchData.length === 0 ? <img src={Spinner} alt='Loading...'/> : searchData.data.map(eachCategory => (
+                error.length > 0 ? <img style={{'width':'70vw','height':'70vh'}} src={noresults} alt={error}/> : searched == false ?  <p> </p> : searchData.length === 0 ? <img src={Spinner} alt='Loading...'/> : searchData.data.map(eachCategory => (
                     <div className="row">
                         <div className="col-xs-7 col-sm-6 col-lg-8">
                             <h4 onClick={() => this.clickHandler(eachCategory._id)} className="category">{eachCategory.Category}</h4>
@@ -64,8 +67,9 @@ class Category extends Component{
             }
             <br/>
             <br/>
+            <div className="container">
             {
-                data.length === 0 ? <img src={Spinner} alt='Loading...'/> :data.map(each => (
+                searched == true ? <p> </p> : data.length === 0 ? <img src={Spinner} alt='Loading...'/> : data.map(each => (
                     <div className="container-fluid">
                         <div className="row">
                             <div className="col-sm-8">
@@ -75,6 +79,7 @@ class Category extends Component{
                     </div>
                 ))
             }
+            </div>
             </Fragment>
             )
 	}
