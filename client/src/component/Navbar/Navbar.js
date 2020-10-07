@@ -46,8 +46,7 @@ class Navbar extends Component{
         console.log(this.state.user)
         return(
             <Fragment>
-                <nav className="navbar navbar-expand-lg navbar-
-                 bg-light">
+                <nav className="navbar navbar-expand-lg navbar-bg-light" style={{'border':'1px solid white','position':'relative','marginTop':'0px','paddingTop':'0px','width':'100%','borderRadius': '1px','boxShadow': '0px 5px 5px 5px rgba(0, 0, 0, 0.1)','zIndex':'99'}}>
                     <ul className="navbar-nav">
                         <li className="nav-item active">
                             <Link to='/'>
@@ -66,8 +65,7 @@ class Navbar extends Component{
                                     <Link to='/title/createtitle' style={{'textDecoration':'none','color':'black','fontWeight':'550'}}>Create Tutorial</Link>
                                 </li>
                                 <li className="nav-item active">
-                                    <Link to='/'>
-                                    </Link>
+                                    <Link to='/'></Link>
                                 </li>
                                 <li className="nav-item active">
                                     <Link to='/profile/mytutorials' style={{'textDecoration':'none','color':'black','fontWeight':'550'}}>My Profile</Link>

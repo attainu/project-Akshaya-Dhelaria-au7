@@ -42,6 +42,11 @@ class Login extends Component{
         console.log(error)
         const enableButton = Email.includes('@') && Email.includes('.') && Password.length>5 && error.length === 0
         return(
+            <div className="login-div">
+            <br />
+            <br />
+            <br />
+            <br />
             <form className="form-group" onSubmit={this.submitHandler}>
             {
                 error && <div className="alert alert-danger" role="alert" style={{justifyContent:'center'}}>
@@ -53,18 +58,20 @@ class Login extends Component{
                 <i className="fa fa-envelope" /> 
                 <input name="Email" type="email" placeholder="Email" value={Email} onChange={this.changeHandler}/>
                 {
-                    Email.length === 0 ? <span></span> : Email.length<6 || !Email.includes('@') || !Email.includes('.')  ? <p className="para" style={{color:'red'}}>Email should be valid</p> : <p className="para" style={{color:'green'}}>Perfect</p>
+                    Email.length === 0 ? <span></span> : Email.length<6 || !Email.includes('@') || !Email.includes('.')  ? <p className="para" style={{color:'red'}}>Email should be valid</p> : <span></span>
                 }
+                <br />
                 <br />
                 <i className="fa fa-key icon" />
                 <input placeholder="Password" type="password" name="Password" value={Password} onChange={this.changeHandler}/>
                 {
-                    Password.length === 0 ? <span></span> : Password.length<6 && Password.length>0 ? <p className="para" style={{color:'red'}}>Should be more than 5 characters</p> : <p className="para" style={{color:'green'}}>Perfect</p>
+                    Password.length === 0 ? <span></span> : Password.length<6 && Password.length>0 ? <p className="para" style={{color:'red'}}>Should be more than 5 characters</p> : <span></span>
                 }
                 <br />
                 <br />
                 <button className="btn btn-info" disabled={!enableButton}>Login</button>
             </form>
+            </div>
         )
     }
 }

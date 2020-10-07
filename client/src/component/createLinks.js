@@ -78,45 +78,42 @@ class CreateTitle extends Component{
 		const validation = Category && Title.length>1 && Link.length>5
 		return(
 				<Fragment>
-				{
-					localStorage.getItem('access-token') ? <span></span> : 
-					<div class="alert alert-danger" role="alert" style={{justifyContent:'center',width:'30vw',marginLeft:'450px'}}>
-						Log in to create tutorial
-				  	</div>
-                }
-                    <br/>
+                    <div className="create-title">
 					<h3>Create the Tutorial </h3>
-					<br/>
-					<h4>Choose the category</h4>
-					<select onChange={this.storeCategory} required>
-					<option>Select the Category</option>
-					{
-						Category.length === 0 ? <img src={Spinner} alt='Loading...'/> :
-						Category.data.map(eachCategory => (
-							
-							<Fragment>
-								<option value={eachCategory._id} onClick={() => this.storeCategory(eachCategory._id)}>{eachCategory.Category}</option>
-							</Fragment>
-						))
-					}
-					</select>
-					<br/>
-					<br/>
-					<i className="fa fa-list" aria-hidden="true"></i>
-					<input name="Title" type="text" placeholder="Title" value={Title} onChange={this.changeHandler}/>
-					<br />
-					<br />
-					<i className="fa fa-link" aria-hidden="true"></i>
-					<input name="Link" type="text" placeholder="Link" value={Link} onChange={this.changeHandler}/>
-					<br />
-					<br />
-					
-					{
-						data === "Link Already Exists!!" && <div className="alert alert-danger" role="alert" style={{justifyContent:'center','width':'30vw','marginLeft':'450px'}}>
-                    		Link already exists
-                		</div>
-					}
-					<button className="btn btn-info" onClick={this.submitHandler} disabled={!validation}>Create Tutorial</button>
+					<hr />
+						<h4>Choose the category</h4>
+						<select onChange={this.storeCategory} required>
+						<option>Select the Category</option>
+						{
+							Category.length === 0 ? <img src={Spinner} alt='Loading...'/> :
+							Category.data.map(eachCategory => (
+								
+								<Fragment>
+									<option value={eachCategory._id} onClick={() => this.storeCategory(eachCategory._id)}>{eachCategory.Category}</option>
+								</Fragment>
+							))
+						}
+						</select>
+						<br/>
+						<br/>
+						<i className="fa fa-list" aria-hidden="true"></i>
+						<input name="Title" type="text" placeholder="Title" value={Title} onChange={this.changeHandler}/>
+						<br />
+						<br />
+						<i className="fa fa-link" aria-hidden="true"></i>
+						<input name="Link" type="text" placeholder="Link" value={Link} onChange={this.changeHandler}/>
+						<br />
+						<br />
+						
+						{
+							data === "Link Already Exists!!" && <div className="alert alert-danger" role="alert" style={{justifyContent:'center','width':'30vw','marginLeft':'60px'}}>
+	                    		Link already exists
+	                		</div>
+						}
+						<button className="btn btn-info" onClick={this.submitHandler} disabled={!validation}>Create Tutorial</button>
+						<br />
+						<br />
+					</div>
 				</Fragment>
 		)
 	}

@@ -61,6 +61,7 @@ class CreateCategory extends Component{
 		console.log("Create Category",this.props.state.createCategory.data)
 		// const {message} = this.props.state.createCategory.data
 		// const accessToken = localStorage.getItem('access-token')
+		const enableButton = Category.length>0
 		return(
 				<Fragment>
 				{
@@ -69,18 +70,24 @@ class CreateCategory extends Component{
 						Log in to create category
 				  	</div>
 				}
-					<h3>Create the Category </h3>
-					<br/>
-					{
-						message.length > 0 && <div className="alert alert-danger" role="alert" style={{justifyContent:'center','width':'30vw','marginLeft':'450px'}}>
-                    		{message}
-                		</div>
-					}
-					<i className="fa fa-th" aria-hidden="true"></i>
-					<input name="Category" type="text" placeholder="Category" value={Category} onChange={this.changeHandler}/>
-					<br />
-					<br />
-					<button className="btn btn-info" onClick={this.submitHandler}>Create Category</button>
+					<div className = 'create-category'>
+						<h3>Create the Category </h3>
+						<hr />
+						<br/>
+						{
+							message.length > 0 && <div className="alert alert-danger" role="alert" style={{justifyContent:'center','width':'30vw','marginLeft':'60px'}}>
+	                    		{message}
+	                		</div>
+						}
+						<i className="fa fa-th" aria-hidden="true"></i>
+						<input name="Category" type="text" placeholder="Category" value={Category} onChange={this.changeHandler}/>
+						<br />
+						<br />
+						<br />
+						<button className="btn btn-info" onClick={this.submitHandler} disabled={!enableButton}>Create Category</button>
+						<br />
+						<br />
+					</div>
 				</Fragment>
 		)
 	}

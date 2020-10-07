@@ -49,10 +49,10 @@ class UpdateProfile extends Component{
         const {data} = this.state
         console.log("Data in profile is" , data)
         const {Title,Link} = this.state
-		const accessToken = localStorage.getItem('access-token')
+		const enableButton =  Title.length>1 && Link.length>5
         return(
-            <Fragment>
-                <p>Update your Post Details</p>
+            <div className="update-profile">
+                <h4 style={{'padding':'5px'}}>Update your Post Details</h4>
                 <hr/>
                 {
 					localStorage.getItem('access-token') ? <span></span> : 
@@ -69,7 +69,7 @@ class UpdateProfile extends Component{
                 <input name="Link" type="text" placeholder="Link" value={Link} onChange={this.changeHandler}/>
                 <br />
                 <br />
-                <button className="btn btn-info" onClick={this.submitHandler} disabled={!accessToken}>Update Category</button>
+                <button className="btn btn-info" onClick={this.submitHandler} disabled={!enableButton}>Update Category</button>
                 {/*
                     data.length == 0 ? <img src={Spinner} alt='Loading...'/> :
                     data.data.map(eachCategory => (
@@ -79,7 +79,9 @@ class UpdateProfile extends Component{
                         </div>
                     ))
                     */}
-            </Fragment>
+                <br />
+                <br />
+            </div>
         )
     }
 } 

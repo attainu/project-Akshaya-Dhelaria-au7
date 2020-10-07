@@ -41,6 +41,8 @@ class Signup extends Component{
         const {error} = this.props.state
         const enableButton = Name.length>5 && Email.includes('@') && Email.includes('.') && Password.length>5 
         return(
+            <div>
+            <br />
             <form className="form-group" onSubmit={this.submitHandler}>
                 <div className="welcome">
                     <h3>Welcome to Coding Hunt</h3>
@@ -50,21 +52,21 @@ class Signup extends Component{
                 <i className="fa fa-user icon" />
                 <input name="Name" type="text" placeholder="Full Name" value={Name} onChange={this.changeHandler} />
                 {
-                   Name.length === 0 ? <span></span> : Name.length<6 && Name.length>0 ? <p className="para" style={{color:'red'}}>Name should be more than 5 characters</p>: <p className="para" style={{color:'green'}}>Perfect</p>
+                   Name.length === 0 ? <span></span> : Name.length<6 && Name.length>0 ? <p className="para" style={{color:'red'}}>Name should be more than 5 characters</p>: <span></span>
                 }
-                
+                <br />
                 <br />
                 <i className="fa fa-envelope" /> 
                 <input name="Email" type="email" placeholder="Email" value={Email} onChange={this.changeHandler}/>
                 {
-                    Email.length === 0 ? <span></span> : Email.length<6 || !Email.includes('@') || !Email.includes('.')  ? <p className="para" style={{color:'red'}}>Email should be valid</p> : error.length>0 ? <p className="para" style={{color:'red'}}>{error}</p> :<p style={{color:'green'}}>Perfect</p>
+                    Email.length === 0 ? <span></span> : Email.length<6 || !Email.includes('@') || !Email.includes('.')  ? <p className="para" style={{color:'red'}}>Email should be valid</p> : error.length>0 ? <p className="para" style={{color:'red'}}>{error}</p> : <span></span>
                 }
-               
+                <br />
                 <br />
                 <i className="fa fa-key icon" />
                 <input placeholder="Password" type="password" name="Password" value={Password} onChange={this.changeHandler}/>
                 {
-                    Password.length === 0 ? <span></span> : Password.length<6 && Password.length>0 ? <p className="para" style={{color:'red'}}>Password should be more than 5 characters</p> : <p className="para" style={{color:'green'}}>Perfect</p>
+                    Password.length === 0 ? <span></span> : Password.length<6 && Password.length>0 ? <p className="para" style={{color:'red'}}>Password should be more than 5 characters</p> : <span></span>
                 }
                 <br />
                 <br />
@@ -72,6 +74,7 @@ class Signup extends Component{
                 <br />
                 <p className="para">Already have an account?<Link to='/login'>Login</Link><Switch><Route path='/login' exact /></Switch></p>
             </form>
+            </div>
         )
     }
 }
