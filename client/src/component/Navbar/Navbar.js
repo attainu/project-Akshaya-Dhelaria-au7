@@ -46,7 +46,7 @@ class Navbar extends Component{
         console.log(this.state.user)
         return(
             <Fragment>
-                <nav className="navbar navbar-expand-lg navbar-bg-light" style={{'border':'1px solid white','position':'relative','marginTop':'0px','paddingTop':'0px','width':'100%','borderRadius': '1px','boxShadow': '0px 5px 5px 5px rgba(0, 0, 0, 0.1)','zIndex':'99'}}>
+                <nav className="navbar navbar-expand-lg navbar-bg-light" style={{'display':'flex','border':'1px solid white','position':'relative','marginTop':'0px','paddingTop':'0px','width':'100%','borderRadius': '1px','boxShadow': '0px 2px 2px 2px rgba(0, 0, 0, 0.1)','zIndex':'99'}}>
                             <Link className="homeLogo" to='/'>
                             <img className="logo" src='./ch.jpg' alt="Logo" />
                             </Link>
@@ -55,6 +55,8 @@ class Navbar extends Component{
                         {
                             localStorage.getItem('access-token') ? 
                             <Fragment>
+                                <li><Link className="welcome-user" style={{'textDecoration':'none','color':'black','fontWeight':'550','margin':'left','paddingRight':'538px'}}>Welcome {localStorage.getItem('Name')}</Link></li>
+
                                 <li className="nav-item active">
                                     <i className="fa fa-plus"></i>
                                     <Link to='/createcategory' style={{'textDecoration':'none','color':'black','fontWeight':'550'}}>Create Category</Link>
@@ -69,10 +71,9 @@ class Navbar extends Component{
                                 <li className="nav-item active">
                                     <Link to='/profile/mytutorials' style={{'textDecoration':'none','color':'black','fontWeight':'550'}}>My Profile</Link>
                                 </li>
-                                <li className="nav-item active">
-                                    <Link to='/login' style={{'textDecoration':'none','color':'black','fontWeight':'550'}} onClick={this.logoutHandler}>Logout</Link>
+                                <li className="nav-item active logout-nav">
+                                    <Link to='/login' style={{'textDecoration':'none','color':'black','fontWeight':'550','borderBottomColor':'none'}} onClick={this.logoutHandler}>Logout</Link>
                                 </li>
-                                <li><Link className="welcome-user" style={{'textDecoration':'none','color':'black','fontWeight':'550'}}>Welcome {localStorage.getItem('Name')}</Link></li>
                             </Fragment> : 
                             <Fragment>
                                 <li className="nav-item active">

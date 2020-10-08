@@ -1,17 +1,16 @@
 nav{
-    /* display: flex;
-    justify-content: space-evenly; */
     background-color: white;
-    /* background-color: white; */
-    position: fixed;
+    /*position: fixed;*/
     padding: 0;
     margin: 0;
     height:11vh;
-    /*z-index: -99;*/
+    /*display: flex;*/
+    /*max-height: -height: 100px;*/
 }
 
 .homeLogo {
     float: left;
+    padding: 20px;
 }
 
 .navbarList {
@@ -25,6 +24,7 @@ li{
     margin: 0;
     padding: 10px;
     margin-left: auto;
+    /*display: inline;*/
 }
 
 .fa-plus{
@@ -41,27 +41,27 @@ li{
     background-color: white;
 }
 
-.nav-item:active{
-    padding-right: 0px;
+/*.nav-item:active{
+    padding: 0px;
     margin: 0;
     color: black !important ;
     text-decoration: none;
-    /* display: flex; */
-    /* justify-content: center; */
-}
+     display: flex; 
+ }*/
+     
 
-.nav-item:hover{
-    /*padding-right: 0px;*/
-    /*margin: 0;*/    
-    /*border:1px solid black;*/
-    /*border-s*/
-    border-radius: 100px;
-    text-decoration: none;
-    /* display: flex; */
-    /* justify-content: center; */
-}
+
+/*.nav-item:hover{  
+    border-bottom:3px solid;
+    text-decoration: none; 
+    border-bottom-color: black;
+}*/
 
 .welcome-user{
-   display: flex;
+    margin-left: auto;
+}
 
+.logout-nav{
+    position: absolute;
+    padding-left: 600px;
 }

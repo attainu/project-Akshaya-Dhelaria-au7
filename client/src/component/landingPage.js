@@ -53,7 +53,7 @@ class Category extends Component{
 		return(
             <Fragment>
             <br/>
-            <input type="search" placeholder="Search for the Programming Language: Python, Javascript" name="Category" value={Category} onChange={this.searchStateHandler} style={{'width':'50vw'}} />
+            <input className="search-input" type="search" placeholder="Search for the Programming Language: Python, Javascript" name="Category" value={Category} onChange={this.searchStateHandler} style={{'width':'50vw'}} />
             <input type="submit" className="btn btn-info" onClick={this.searchHandler} />
             <br/>
             {
@@ -67,12 +67,12 @@ class Category extends Component{
             }
             <br/>
             <br/>
-            <div className="container">
+            <div className="category-container">
             {
-                searched == true ? <p> </p> : data.length === 0 ? <img src={Spinner} alt='Loading...'/> : data.map(each => (
+                searched == true ? <p> </p> : data.length === 0 ? <img className="spinner-image" src={Spinner} alt='Loading...'/> : data.map(each => (
                     <div className="container-fluid">
                         <div className="row">
-                            <div className="col-sm-8">
+                            <div className="col-lg-8">
                                 <h4 onClick={() => this.clickHandler(each._id)} className="category">{each.Category}</h4>
                             </div>
                         </div>

@@ -36,7 +36,7 @@ class Login extends Component{
             }else{
                 this.props.history.push('/')
             }
-        },3000)
+        },2000)
         event.preventDefault()
     }
 

@@ -14,7 +14,6 @@ body, html {
   background-repeat: no-repeat;
   height: 100%;
   backdrop-filter: opacity(10);
-  /* Center and scale the image nicely */
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

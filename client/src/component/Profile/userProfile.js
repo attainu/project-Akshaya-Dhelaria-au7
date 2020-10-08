@@ -60,12 +60,12 @@ class Profile extends Component{
 
     render(){
         const {data,initialized} = this.state
-        console.log("Data in profile is" , data)
-        console.log("Props in profile" , this.props)
+        // console.log("Data in profile is" , data)
+        // console.log("Props in profile" , this.props)
         return(
             <Fragment>
                 <div className="card">
-                  <img src={ProfilePic} alt="Profile" style={{"width":"20vw"}} />
+                  <img src={ProfilePic} alt="Profile" style={{"width":"15vw"}} />
                   <h3>{localStorage.getItem('Name')}</h3>
                   <p className="title">{localStorage.getItem('Email')}</p>
                 </div>
@@ -75,11 +75,11 @@ class Profile extends Component{
                 {
                     (initialized == true && data.length == 0) ? <img className="no-result" src={noresult} alt="No Post Found"/> : data.length === 0 ? <img src={Spinner} alt='Loading...'/> :
                     data.data.map((eachCategory,index) => (
-                        <div className="container">
+                        <div className="user-container">
                             <div className="row">
-                                <div className="card col-lg">
+                                <div className="user-profile">
                                     <br/>
-                                    <p className="titles">Title : {eachCategory.Title}</p>
+                                    <p className="titles" style={{'textTransform':'uppercase'}}>Title : {eachCategory.Title}</p>
                                     <a href={eachCategory.Link} target="_blank">Link : {eachCategory.Link}</a>
                                     <br/>
                                     <br/>
