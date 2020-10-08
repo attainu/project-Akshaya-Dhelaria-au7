@@ -30,8 +30,8 @@ You can also update the packages by <em>npm update</em>
  Planning to add the feature where the learner can identify the most suitable course of their choice by allowing them to filter courses by fee, course type (video/ebook etc.)
  
  <h1>Heroku Deployed Link:</h1>
-
-(Deployed Project Link)
+ 
+https://whispering-harbor-06154.herokuapp.com/
 
 <h2>License</h2>
 Create React App is open source software <a>licensed as MIT</a>.
