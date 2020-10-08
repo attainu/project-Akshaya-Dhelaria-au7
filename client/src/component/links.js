@@ -54,7 +54,7 @@ class Links extends Component{
             <h4>List of Tutorials </h4>
             <hr />
             {
-                error.length > 0 && <div class="alert alert-danger" role="alert" style={{'justifyContent':'center','width':'30vw','marginLeft':'20px'}}>
+                error.length > 0 && <div class="alert alert-danger" role="alert" style={{'justifyContent':'center','width':'30vw','marginLeft':'440px'}}>
                     Please login to like the post.
                   </div> 
             }

@@ -49,17 +49,17 @@ class Category extends Component{
         console.log(searched)
         const {data} = this.props.state
         // console.log(data)
-        const logo = <i className="fa fa-search" />
 		return(
             <Fragment>
             <br/>
+            <br />
             <input className="search-input" type="search" placeholder="Search for the Programming Language: Python, Javascript" name="Category" value={Category} onChange={this.searchStateHandler} style={{'width':'50vw'}} />
             <input type="submit" className="btn btn-info" onClick={this.searchHandler} />
             <br/>
             {
                 error.length > 0 ? <img style={{'width':'70vw','height':'70vh'}} src={noresults} alt={error}/> : searched == false ?  <p> </p> : searchData.length === 0 ? <img src={Spinner} alt='Loading...'/> : searchData.data.map(eachCategory => (
                     <div className="row">
-                        <div className="col-xs-7 col-sm-6 col-lg-8">
+                        <div className="col-xs-7 col-sm-6 col-lg-8" style={{'marginLeft':'280px','padding':"20px"}}>
                             <h4 onClick={() => this.clickHandler(eachCategory._id)} className="category">{eachCategory.Category}</h4>
                         </div>
                     </div>

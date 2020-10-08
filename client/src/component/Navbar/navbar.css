@@ -17,6 +17,7 @@ nav{
     float: right;
     list-style: none;
     margin-left: auto;
+    /*margin-right: auto;*/
 }
 
 li{

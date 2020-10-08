@@ -64,6 +64,12 @@ class Profile extends Component{
         // console.log("Props in profile" , this.props)
         return(
             <Fragment>
+                {
+                    localStorage.getItem('access-token') ? <span></span> : 
+                    <div class="alert alert-danger" role="alert" style={{justifyContent:'center',width:'30vw',marginLeft:'450px'}}>
+                        Log in to view your profile
+                    </div>
+                }
                 <div className="card">
                   <img src={ProfilePic} alt="Profile" style={{"width":"15vw"}} />
                   <h3>{localStorage.getItem('Name')}</h3>

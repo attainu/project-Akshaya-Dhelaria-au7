@@ -78,6 +78,12 @@ class CreateTitle extends Component{
 		const validation = Category && Title.length>1 && Link.length>5
 		return(
 				<Fragment>
+					{
+						localStorage.getItem('access-token') ? <span></span> : 
+						<div class="alert alert-danger" role="alert" style={{justifyContent:'center',width:'30vw',marginLeft:'470px'}}>
+							Log in to create Tutorials
+					  	</div>
+					}
                     <div className="create-title">
 					<h3>Create the Tutorial </h3>
 					<hr />

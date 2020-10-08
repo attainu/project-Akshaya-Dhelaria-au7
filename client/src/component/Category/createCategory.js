@@ -14,21 +14,6 @@ class CreateCategory extends Component{
 		message:''
 	}
 
-	// callingCreateApi = async () => {
-	// 	const token = localStorage.getItem("access-token")
-	// 	const setHeader = {
-	// 		'Content-Type': 'application/json',
-	// 		'authorization': token
-	// 	}
-	// 	await Axios.post(`${Backend_URL}/category`,{
-	// 		Category:this.state.Category
-	// 	},{
-	// 		headers:setHeader
-	// 	})
-	// 	.then((data) => this.setState({data:data.data.message}))
-	// 	.catch((err) => console.log("Error while creating category",err.response.data.message))
-	// }
-
 	changeHandler = (event) => {
 		const {name,value} = event.target
 		this.setState({
@@ -57,7 +42,7 @@ class CreateCategory extends Component{
 
 	render(){
 		const {Category,data,message} = this.state
-		console.log("Render" , message)
+		// console.log("Render" , message)
 		console.log("Create Category",this.props.state.createCategory.data)
 		// const {message} = this.props.state.createCategory.data
 		// const accessToken = localStorage.getItem('access-token')
@@ -66,7 +51,7 @@ class CreateCategory extends Component{
 				<Fragment>
 				{
 					localStorage.getItem('access-token') ? <span></span> : 
-					<div class="alert alert-danger" role="alert" style={{justifyContent:'center',width:'30vw',marginLeft:'550px'}}>
+					<div class="alert alert-danger" role="alert" style={{justifyContent:'center',width:'30vw',marginLeft:'470px'}}>
 						Log in to create category
 				  	</div>
 				}
