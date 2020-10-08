@@ -19,13 +19,13 @@ Please run <em>npm install</em> to get required packages
 You can also update the packages by <em>npm update</em>
 
 <h1>Technologies Used</h1>
-Express
-JsonWebTokens:
-Bcrypt
-Express-Validator
-Nodemailer
-MongoDB
-React
+Express,
+JsonWebTokens,
+Bcrypt,
+Express-Validator,
+Nodemailer,
+MongoDB,
+React,
 Axios
 
 <h1>Future scope</h1>
