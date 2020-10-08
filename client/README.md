@@ -1,6 +1,7 @@
 # Coding Hunt
 
-The main aim of building this was to get all the best tutorials at one place so that each learner can visit here, get some good resources of the programming language and learn. Coding Hunt lets learners identify the most suitable course of their choice.
+To learn a promgramming skill there are many tutorial all over the internet.Its bit difficult for a user to make a choice.
+Coding hunt is a platform that helps users in finding best tutorials.The website gives insights to users the various tutorials available for a programming skill.Users can come in and contribute as well.
 
 ## Installation
 
